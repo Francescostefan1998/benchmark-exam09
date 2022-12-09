@@ -1,3 +1,150 @@
+#myNavbar{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-inline: 20px;
+  position: sticky;
+  top: 0;
+}
+
+#leftSideNavbar{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.list-album{
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 15px;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.list-left-side{
+  display: flex;
+  align-items: center;
+  gap:40px;
+}
+#player{
+  position: sticky;
+  bottom: 0;
+  background-color: rgb(58, 58, 58);
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+color: white;
+align-items: center;
+box-sizing: border-box;
+padding-inline: 20px;
+}
+#leftSidePlayer{
+  display: flex;
+  align-items: center;
+gap: 30px;
+}
+.main{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+background-color: black;
+}
+.innerMain{
+  width: 80%;
+  background: rgb(23, 23, 23);
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+#biggestMain{
+  min-height: 100vh;
+}
+#rightSidePlayer{
+  display:flex;
+  align-items: center;
+  gap: 5px
+}
+
+#titleSongPlayer{
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+#imagePlayer{
+  height: 100px;
+  padding: 10px;
+}
+
+#textPlayer{
+  display: flex;
+  flex-direction: column;
+}
+
+#playButtonPlayer{
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+#songListPlayer{
+  display: flex;
+  align-items: center;
+flex-direction: column;
+}
+.insidePlayerSlide{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px
+}
+#sideBar{
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  height: 100%;
+
+  min-height: 100vh;
+  width: 20%;
+}
+
+#right-logo{
+display: flex;
+width: 100%;
+}
+#sideBar i{
+  color: white;
+}
+#center-colum{
+  width: 100%;
+display: flex;
+flex-direction: column;
+gap: 2px;
+justify-content: center;
+}
+#player img{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  object-fit: cover;
+
+}
+.sidebarlist{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 2px
+}
+
+
+
 .App {
   text-align: center;
 }
