@@ -15,7 +15,7 @@ const AlbumPage = () => {
   }; */
 
   useEffect(() => {
-    dispatch(fetchAlbumSong());
+    dispatch(fetchAlbumSong("metallica"));
     console.log("useeffect triggered");
   }, []);
   const listsong = useSelector((store) => store.album.content);

@@ -8,6 +8,7 @@ import ArtistPage from "./components/ArtistPage";
 import AlbumPage from "./components/AlbumPage";
 import MySidebar from "./components/MySidebar";
 import Player from "./components/Player";
+
 function App() {
   return (
     <div id="biggestMain">

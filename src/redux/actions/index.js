@@ -1,12 +1,12 @@
 export const ADD_TO_FAVOURITE_JOB = "ADD_TO_FAVOURITE_JOB";
 export const ADD_TO_FAVOURITE_SONG = "ADD_TO_FAVOURITE_SONG";
-
-export const fetchAlbumSong = () => {
+export const SEARCH_SONG = "SEARCH_SONG";
+export const fetchAlbumSong = (query) => {
   return async (dispatch, getState) => {
     console.log("fetch function triggered");
     try {
       let resp = await fetch(
-        "https://striveschool-api.herokuapp.com/api/deezer/album/75621062"
+        `https://striveschool-api.herokuapp.com/api/deezer/search?q=${query}`
       );
       console.log(resp);
       if (resp.ok) {
@@ -36,5 +36,31 @@ export const changecolor = (jobSelected) => {
   return {
     type: ADD_TO_FAVOURITE_SONG,
     payload: jobSelected,
+  };
+};
+
+export const fetchHomeSong = (query) => {
+  return async (dispatch, getState) => {
+    console.log("fetch function triggered");
+    try {
+      let resp = await fetch(
+        `https://striveschool-api.herokuapp.com/api/deezer/search?q=${query}`
+      );
+      console.log(resp);
+      if (resp.ok) {
+        let fetchedalbum = await resp.json();
+        console.log(fetchedalbum.data);
+        let data = fetchedalbum.data;
+        console.log(data);
+        dispatch({
+          type: SEARCH_SONG,
+          payload: data,
+        });
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 };

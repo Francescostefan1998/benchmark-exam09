@@ -1,8 +1,13 @@
-import { ADD_TO_FAVOURITE_JOB, ADD_TO_FAVOURITE_SONG } from "../actions";
+import {
+  ADD_TO_FAVOURITE_JOB,
+  ADD_TO_FAVOURITE_SONG,
+  SEARCH_SONG,
+} from "../actions";
 
 const initialState = {
   content: [],
   selected: null,
+  search: [],
 };
 console.log(initialState.selected);
 const albumReducer = (state = initialState, action) => {
@@ -18,6 +23,12 @@ const albumReducer = (state = initialState, action) => {
         ...state,
 
         selected: action.payload,
+      };
+    case SEARCH_SONG:
+      return {
+        ...state,
+
+        search: action.payload,
       };
     default:
       return state;

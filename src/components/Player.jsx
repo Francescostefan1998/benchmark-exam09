@@ -28,7 +28,7 @@ const Player = () => {
                   <h3>{jobSelected.title}</h3>
                 </div>
                 <div>
-                  <h3>artist</h3>
+                  <h6>{jobSelected.artist.name}</h6>
                 </div>
               </div>
             </div>
@@ -42,9 +42,17 @@ const Player = () => {
                   <div>w</div>
                 </div>
                 <div className="insidePlayerSlide">
-                  <div>w</div>
-                  <div>w</div>
-                  <div>w</div>
+                  <div>0:10</div>
+                  <div className="playback-progressbar">
+                    <div className="progress--bar">
+                      <div className="progress--bar-bg">
+                        <div className="bg">
+                          <div className="bar"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>3:10</div>
                 </div>
               </div>
             </div>
