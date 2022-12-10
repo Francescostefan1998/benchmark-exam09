@@ -4,6 +4,13 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { changecolor } from "../redux/actions";
+import { FaHeart } from "react-icons/fa";
+import { BiShuffle } from "react-icons/bi";
+import { AiFillStepBackward } from "react-icons/ai";
+import { AiFillStepForward } from "react-icons/ai";
+import { BsListUl } from "react-icons/bs";
+import { MdOutlineComputer } from "react-icons/md";
+import { BsFillVolumeUpFill } from "react-icons/bs";
 
 const Player = () => {
   const dispatch = useDispatch();
@@ -33,13 +40,21 @@ const Player = () => {
               </div>
             </div>
             <div id="playButtonPlayer">
-              <div id="likePlayer">w</div>
+              <div id="likePlayer">
+                <FaHeart />
+              </div>
               <div id="songSlidePlayer">
                 <div className="insidePlayerSlide">
+                  <div>
+                    <BiShuffle />
+                  </div>
+                  <div>
+                    <AiFillStepBackward />
+                  </div>
                   <div>w</div>
-                  <div>w</div>
-                  <div>w</div>
-                  <div>w</div>
+                  <div>
+                    <AiFillStepForward />
+                  </div>
                 </div>
                 <div className="insidePlayerSlide">
                   <div>0:10</div>
@@ -58,9 +73,15 @@ const Player = () => {
             </div>
           </div>
           <div id="rightSidePlayer">
-            <div>w</div>
-            <div>w</div>
-            <div>w</div>
+            <div>
+              <BsListUl />
+            </div>
+            <div>
+              <MdOutlineComputer />
+            </div>
+            <div>
+              <BsFillVolumeUpFill />
+            </div>
           </div>
         </div>
       ) : (

@@ -6,7 +6,7 @@ export const fetchAlbumSong = (query) => {
     console.log("fetch function triggered");
     try {
       let resp = await fetch(
-        `https://striveschool-api.herokuapp.com/api/deezer/search?q=${query}`
+        `https://striveschool-api.herokuapp.com/api/deezer/album/${query}`
       );
       console.log(resp);
       if (resp.ok) {

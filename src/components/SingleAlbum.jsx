@@ -9,9 +9,22 @@ import { addToFavouriteAction } from "../redux/actions";
 import { fetchHomeSong } from "../redux/actions";
 const SingleAlbum = ({ album, i }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(fetchAlbumSong(album.id));
+    navigate("/albumpage/:albumId");
+  };
   return (
-    <div className="list-album" key={i}>
-      <div className="list-left-side">
+    <div
+      className="list-album"
+      key={album.id}
+      onClick={() => dispatch(fetchAlbumSong(album.album.id))}
+    >
+      <div
+        className="list-left-side"
+        onClick={() => navigate("/albumpage/:albumId")}
+      >
         <div>{i + 1}</div>
         <div className="flex-column">
           <div className="gettitle">{album.title}</div>

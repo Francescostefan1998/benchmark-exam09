@@ -12,26 +12,26 @@ const MySidebar = () => {
   return (
     <div id="sideBar" className="col-12 col-md-3">
       <div id="right-logo">
-        <BsSpotify />
+        <BsSpotify id="logo-f" />
       </div>
       <div id="center-column">
         <div className="sidebarlist">
-          <div className="col-4">
+          <div className="col-2">
             <AiFillHome />
           </div>
-          <div className="col-4">Home</div>
+          <div className="col-10">Home</div>
         </div>
         <div className="sidebarlist">
-          <div className="col-4">
+          <div className="col-2">
             <BsSearch />
           </div>
-          <div className="col-4">Search</div>
+          <div className="col-10">Search</div>
         </div>
         <div className="sidebarlist">
-          <div className="col-4">
+          <div className="col-2">
             <BiLibrary />
           </div>
-          <div className="col-4">Your Library</div>
+          <div className="col-10">Your Library</div>
         </div>
       </div>
     </div>
