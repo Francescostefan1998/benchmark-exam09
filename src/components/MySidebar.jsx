@@ -9,13 +9,14 @@ import { BsSearch } from "react-icons/bs";
 import { BiLibrary } from "react-icons/bi";
 
 const MySidebar = () => {
+  const navigate = useNavigate();
   return (
     <div id="sideBar" className="col-12 col-md-3">
       <div id="right-logo">
         <BsSpotify id="logo-f" />
       </div>
       <div id="center-column">
-        <div className="sidebarlist">
+        <div className="sidebarlist" onClick={(e) => navigate("/")}>
           <div className="col-2">
             <AiFillHome />
           </div>

@@ -23,16 +23,17 @@ const HomePage = () => {
         <MyNavbar />
         <div>
           {listalbum && (
-            <div>
-              {listalbum.map((album, i) => (
-                <SingleAlbum album={album} key={i} i={i} />
-              ))}
+            <div class="row">
+              <div class="col-12">
+                <h4>Albums</h4>
+                <div class="row" id="albums">
+                  {listalbum.map((album, i) => (
+                    <SingleAlbum album={album} key={i} i={i} />
+                  ))}
+                </div>
+              </div>
             </div>
           )}
-          <h2>Artist</h2>
-        </div>
-        <div>
-          <h2>Album</h2>
         </div>
       </div>
     </div>

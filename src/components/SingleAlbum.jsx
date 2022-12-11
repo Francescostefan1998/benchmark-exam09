@@ -12,32 +12,20 @@ const SingleAlbum = ({ album, i }) => {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(fetchAlbumSong(album.id));
+    dispatch(fetchAlbumSong(album.album.id));
     navigate("/albumpage/:albumId");
   };
   return (
-    <div
-      className="list-album"
-      key={album.id}
-      onClick={() => dispatch(fetchAlbumSong(album.album.id))}
-    >
-      <div
-        className="list-left-side"
-        onClick={() => navigate("/albumpage/:albumId")}
-      >
-        <div>{i + 1}</div>
-        <div className="flex-column">
-          <div className="gettitle">{album.title}</div>
-          <div>
-            {album.artist.name}
-            <span className="id">{album.id}</span>
-          </div>
+    <div className="col-md-2" onClick={handleSubmit}>
+      <div className="big-card album">
+        <img src={album.album.cover} alt={album.title} />
+        <h4>{album.title}</h4>
+        <h5>Album</h5>
+        <div className="time-song">
+          {(album.duration - (album.duration %= 60)) / 60 +
+            (9 < album.duration ? ":" : ":0") +
+            album.duration}
         </div>
-      </div>
-      <div className="time-song">
-        {(album.duration - (album.duration %= 60)) / 60 +
-          (9 < album.duration ? ":" : ":0") +
-          album.duration}
       </div>
     </div>
   );

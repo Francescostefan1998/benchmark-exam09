@@ -62,7 +62,7 @@ const Player = () => {
                     <div className="progress--bar">
                       <div className="progress--bar-bg">
                         <div className="bg">
-                          <div className="bar"></div>
+                          <div className="bar">{jobSelected.preview}</div>
                         </div>
                       </div>
                     </div>

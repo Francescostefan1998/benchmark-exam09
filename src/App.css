@@ -307,11 +307,18 @@ justify-content: center;
   object-fit: cover;
 
 }
+.big-card {
+  display: block;
+  text-decoration: none !important;
+  margin-bottom: 1.5em;
+  cursor: pointer;
+}
 .sidebarlist{
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 2px
+  gap: 2px;
+  cursor: pointer
 }
 
 
