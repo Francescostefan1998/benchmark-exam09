@@ -21,6 +21,12 @@ const Player = () => {
   }, []);
   const jobSelected = useSelector((store) => store.album.selected);
   console.log(jobSelected);
+
+  const audio = new Audio(jobSelected.preview);
+
+  const start = () => {
+    audio.play();
+  };
   return (
     <div>
       {jobSelected !== undefined ? (
@@ -51,7 +57,9 @@ const Player = () => {
                   <div>
                     <AiFillStepBackward />
                   </div>
-                  <div>w</div>
+                  <div>
+                    <button onClick={start}>Play</button>
+                  </div>
                   <div>
                     <AiFillStepForward />
                   </div>

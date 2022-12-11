@@ -320,8 +320,64 @@ justify-content: center;
   gap: 2px;
   cursor: pointer
 }
+.content:hover #inner-top-container{
+  transform: translateX(0px);
+  transition-duration:0.7s;
+  
+  opacity: 1;
+  z-index: 3;
+}
+#album-header{
+  height: 70vh;
+}
+#cover-black{
+  top:0;
+  position: absolute;
+  background: linear-gradient(180deg, transparent 50%, black 99.9%, black 100%);
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  z-index: -1;
 
+}
+#album-header{
+  height: 55vh;
+  top: 0;
+  width: 100%;
+  background-color:  rgb(165, 61, 157);
+  position: relative;
+  z-index: 0;
+  margin-top: -40px;
+  padding-top: 55px;
+}
+#album-image{
+  height: 100%;
+}
 
+#album-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0px 0px 30px 10px rgba(0,0,0,0.5);
+  
+}
+
+#album-title-image{
+  padding-top: 4%;
+  padding-bottom: 4%;
+  padding-inline: 4%;
+  align-items:flex-end;
+  height: 100%;
+  gap:0%;
+  font-family: 'Roboto', sans-serif;
+}
+#album-title-image>div{
+  padding-right: 0px;
+ 
+}
+#album-title{
+  flex-grow: 1;
+}
 
 .App {
   text-align: center;
@@ -360,4 +416,445 @@ justify-content: center;
   to {
     transform: rotate(360deg);
   }
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+#album-header{
+    height: 55vh;
+    top: 0;
+    width: 100%;
+    background-color:  rgb(165, 61, 157);
+    position: relative;
+    z-index: 0;
+    margin-top: -40px;
+    padding-top: 55px;
+}
+
+
+#cover-black{
+    top:0;
+    position: absolute;
+    background: linear-gradient(180deg, transparent 50%, black 99.9%, black 100%);
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    z-index: -1;
+
+}
+
+.list-album{
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 15px;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.colorGreen{
+    color: green!important;
+}
+
+#inner-container{
+    margin-inline: 4%;
+    margin-top: 0;
+    z-index: 0;
+}
+
+#hr{
+    border-top: 1px solid grey;
+}
+.list-left-side{
+    display: flex;
+    align-items: center;
+    gap:40px;
+}
+#ordered-list-album{
+    padding: 0;
+}
+
+#bigger-container{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+overflow: hidden;
+}
+
+#play-button{
+    height: 45px;
+    width: 45px;
+    background-color: rgb(62, 188, 62);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+}
+
+#inner-top-container{
+    position: relative;
+    width: 100%;
+    height: 12vh;
+    display: flex;
+    justify-content: flex-start;
+    padding: 20px;
+    font-size: 30px;
+    align-items: center;
+    gap: 1em;
+    padding-top: 0;
+    padding-bottom: 0;
+    /*transform: translateX(-200px);
+    transition-duration:0.7s;
+
+    opacity: 0;*/
+
+}
+.content:hover #inner-top-container{
+    transform: translateX(0px);
+    transition-duration:0.7s;
+    
+    opacity: 1;
+    z-index: 3;
+}
+
+#inner-top-container div {
+    cursor: pointer;
+}
+
+#play-symbol{
+margin-inline: auto;
+margin-left: 16px;
+border-left: 17px solid white;
+border-top: 11px solid transparent;
+border-bottom: 11px solid transparent;
+width: 0;
+height: 0;
+}
+ul li {
+    list-style-type: none;
+  }
+
+#background-pink{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 30vh;
+    background: linear-gradient(180deg, rgb(165, 61, 157) 20%, transparent 90%, transparent 100%);
+z-index: -1;
+opacity: 0.4;
+padding: 0;
+}
+#dropdown-album{
+    position: relative;
+}
+
+.dropdown-album{
+    display: none!important;
+    color: black;
+    position: absolute;
+    right: -10px;
+    width: 20vh;
+    height: 20vh;
+    top: 30px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+.dropdown-album1{
+    display: flex;
+    color: white;
+    position: absolute;
+    right: -10px;
+    width: 25vh;
+    height: 37vh;
+    top: 30px;
+    background-color: #1e1e1e;
+    box-shadow: 0px 0px 5px 2px rgb(165, 61, 157);
+    
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    padding-right: 30px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+}
+.dropdown-album1 .drop-list-song{
+    cursor: pointer;
+}
+.dropdown-album1 .drop-list-song:hover>div{
+    scale: 1.1;
+
+}
+#backg-white{
+    background-color: white;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+
+}
+#backg-white img{
+    box-sizing: content-box;
+    width: 113%;
+    height: 113%;
+    margin-top: -6px;
+    margin-left: -2px;
+}
+nav{
+    background-color: transparent;
+    position: sticky;
+
+    top: 13px;
+    padding-top: 0px;
+    padding-bottom: 23px;
+    z-index: 2;
+}
+.id{
+    color: transparent;
+}
+#album-image{
+    height: 100%;
+}
+
+#album-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0px 0px 30px 10px rgba(0,0,0,0.5);
+    
+}
+
+#album-title-image{
+    padding-top: 4%;
+    padding-bottom: 4%;
+    padding-inline: 4%;
+    align-items:flex-end;
+    height: 100%;
+    gap:0%;
+    font-family: 'Roboto', sans-serif;
+}
+#album-title-image>div{
+    padding-right: 0px;
+   
+}
+#album-title{
+    flex-grow: 1;
+}
+
+#under-main{
+    gap: 2px;
+    align-items: center;
+    margin: 0px;
+
+}
+.drop-list-song{
+    justify-content: space-between;
+}
+
+#subtitle {
+    display: flex;
+    gap: 40px;
+
+}
+#under-main i{
+    font-size: 5px;
+    margin-bottom: 5px;
+
+}
+#list-song-section{
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 15px;
+}
+
+
+.round-border{
+    background-image: url("https://th.bing.com/th/id/R.a2f49ea2346ade619ae7d782dd9f0724?rik=Le%2fIgHdoQ%2f%2bJtQ&riu=http%3a%2f%2fthatgrapejuice.net%2fwp-content%2fuploads%2f2018%2f04%2fcardi-b-tracklist-invasion-of-privacy-tgj-600x600.jpg&ehk=X4s%2b%2bJrijOhD6kU2GyXFZAwb%2fTnpoTsLWI4tuwBwZFE%3d&risl=&pid=ImgRaw&r=0");
+background-size: cover;
+border-radius: 50%;
+width: 30px;
+height: 30px;
+overflow: hidden;
+}
+
+.round-border img{
+    width: 100%;
+    object-fit: cover;
+   
+}
+
+.navigation-buttons{
+    display: flex;
+    gap: 15px;
+}
+.navigation-buttons div{
+    width: 40px;
+    height: 40px;
+    background: black;
+    opacity: 0.5;
+
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation-buttons div:hover{
+    opacity: 0.8;
+}
+.hrr{
+height: 1px;
+color: rgb(165, 61, 157);
+border-color: rgb(165, 61, 157);
+width: 157%;
+margin-left: -24px;
+margin-top: 12px;
+}
+nav .user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    background-color: black;
+    border-radius: 20px;
+    padding-inline: 8px;
+    height: 40px;
+}
+nav .user div img {
+    height: 24px;
+    margin-right: 0em;
+    border-radius: 50%;
+}
+
+.user svg{
+    cursor: pointer;
+}
+#right-side-navbar{
+    display: flex;
+    align-items: center;
+}
+nav .navigation-buttons a {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0px;
+    margin-right: 0px;
+}
+
+#background-nav{
+    position: absolute;
+    
+    width: 120%;
+    height: 200%;
+    margin-top: -2.5%;
+    left: 0;
+    z-index: -1;
+}
+.background-nav{
+    background-color: white;
+opacity: 0.5;
+position: absolute;
+    
+    width: 120%;
+    height: 200%;
+    margin-top: -2.5%;
+    left: 0;
+    z-index: -1;
+}
+
+.dropdown-settings{
+    display: none!important;
+}
+
+
+.dropdown-settingss{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+    position: absolute;
+    left: 0px;
+    width: 30vh;
+    height: 33vh;
+    top: 50px;
+    background-color: #1e1e1e;
+    box-shadow: 0px 0px 5px 2px rgb(165, 61, 157);
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    padding-right: 30px;
+    border-radius: 5px;
+    z-index: 3;
+    overflow: hidden;
+}
+#settings{
+    position: relative;
+
+}
+.dropdown-settingss .row{
+    justify-content: space-between;
+
+}
+.dropdown-settingss .row:hover>div{
+    scale: 1.1;
+
+}
+#cd-r{
+    top:0;
+    left:0;
+    display: flex;
+    flex-direction: column;
+    font-size: 1px;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+}
+
+@media(max-width: 768px){
+    #album-image{
+        text-align: center;
+    }
+    .col-12{
+        text-align: center;
+    }
+    #album-header{
+        height: 70vh;
+    }
+    #album-title div{
+        display: flex;
+        justify-content: center;
+    }
+    #album-title{
+        padding-left: 0px!important;
+    }
+    #album-title-image{
+        height: 60%;
+        margin-bottom: 10%;
+        margin-inline: 3%;
+
+        margin-top: 0;
+    }
+    #album-title-image h1{
+       font-size: 30px;
+    }
+    #inner-top-container {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+      }
+}
+@media(max-width: 1150px){
+    #album-title{
+        padding-left: 35px;
+        padding-bottom: 0px;
+
+    }
+    #album-title h1{
+        font-size: 30px;
+    }
 }
