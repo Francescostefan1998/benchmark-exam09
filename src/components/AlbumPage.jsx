@@ -7,6 +7,7 @@ import MySidebar from "./MySidebar";
 import { fetchAlbumSong } from "../redux/actions";
 import { changecolor } from "../redux/actions";
 import SingleSong from "./SingleSong";
+import SingleAlbum from "./SingleAlbum";
 const AlbumPage = () => {
   const dispatch = useDispatch();
   /* const handleSubmit = async (e) => {
@@ -19,6 +20,7 @@ const AlbumPage = () => {
     console.log("useeffect triggered");
   }, []);
   const listsong = useSelector((store) => store.album.content);
+  const album = useSelector((store) => store.album.selected);
   return (
     <div className="main">
       <MySidebar />
@@ -29,6 +31,7 @@ const AlbumPage = () => {
         </div>
         <div>
           <h2>Album</h2>
+          <SingleAlbum album={album} />
 
           {listsong.map((song, i) => (
             <SingleSong song={song} key={i} i={i} />
