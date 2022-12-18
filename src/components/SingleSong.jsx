@@ -26,6 +26,7 @@ const SingleSong = ({ song, i }) => {
         </div>
       </div>
       <div className="time-song">
+        {song.duration}
         {/*{(song.duration - (song.duration %= 60)) / 60 +
           (9 < song.duration ? ":" : ":0") +
           song.duration}*/}

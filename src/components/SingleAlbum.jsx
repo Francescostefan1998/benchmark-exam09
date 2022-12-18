@@ -25,6 +25,7 @@ const SingleAlbum = ({ album, i }) => {
         <h4>{album.title}</h4>
         <h5>Album</h5>
         <div className="time-song">
+          {album.duration}
           {/*  {(album.duration - (album.duration %= 60)) / 60 +
             (9 < album.duration ? ":" : ":0") +
             album.duration}*/}
