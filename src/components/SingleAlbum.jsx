@@ -10,9 +10,12 @@ import { fetchHomeSong } from "../redux/actions";
 const SingleAlbum = ({ album, i }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  console.log(album.album.id);
+  console.log(i);
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(fetchAlbumSong(album.album.id));
+    console.log(e);
     navigate("/albumpage/:albumId");
   };
   return (
@@ -22,9 +25,9 @@ const SingleAlbum = ({ album, i }) => {
         <h4>{album.title}</h4>
         <h5>Album</h5>
         <div className="time-song">
-          {(album.duration - (album.duration %= 60)) / 60 +
+          {/*  {(album.duration - (album.duration %= 60)) / 60 +
             (9 < album.duration ? ":" : ":0") +
-            album.duration}
+            album.duration}*/}
         </div>
       </div>
     </div>

@@ -11,15 +11,15 @@ import { AiFillStepForward } from "react-icons/ai";
 import { BsListUl } from "react-icons/bs";
 import { MdOutlineComputer } from "react-icons/md";
 import { BsFillVolumeUpFill } from "react-icons/bs";
-
+import { addToFavouriteSongs } from "../redux/actions";
 const Player = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(changecolor(jobSelected));
+    dispatch(addToFavouriteSongs(jobSelected));
     console.log("useeffect triggered");
   }, []);
-  const jobSelected = useSelector((store) => store.album.selected);
+  const jobSelected = useSelector((store) => store.album.favourite);
   console.log(jobSelected);
 
   const audio = new Audio(jobSelected.preview);

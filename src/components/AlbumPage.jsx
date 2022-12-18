@@ -8,32 +8,34 @@ import { fetchAlbumSong } from "../redux/actions";
 import { changecolor } from "../redux/actions";
 import SingleSong from "./SingleSong";
 import SingleAlbum from "./SingleAlbum";
-const AlbumPage = () => {
+const AlbumPage = ({ album }) => {
+  const [refresh, setRefresh] = useState("");
   const dispatch = useDispatch();
   /* const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(changecolor(e));
   }; */
-
+  const listsong = useSelector((store) => store.album.content);
+  const album1 = useSelector((store) => store.album.selected);
   useEffect(() => {
     dispatch(fetchAlbumSong("metallica"));
     console.log("useeffect triggered");
-  }, []);
-  const listsong = useSelector((store) => store.album.content);
-  const album = useSelector((store) => store.album.selected);
+    setRefresh(album);
+  }, [album]);
+
   return (
     <div className="main">
       <MySidebar />
       <div className="innerMain">
         <MyNavbar />
-        <div>
+        <div className="behind-nav">
           <div className="content">
             <div id="album-header">
               <div id="cover-black"></div>
               <div className="row" id="album-title-image">
                 <div className="col-12 col-md-4 col-lg-3" id="album-image">
                   <img
-                    src="https://th.bing.com/th/id/R.a2f49ea2346ade619ae7d782dd9f0724?rik=Le%2fIgHdoQ%2f%2bJtQ&riu=http%3a%2f%2fthatgrapejuice.net%2fwp-content%2fuploads%2f2018%2f04%2fcardi-b-tracklist-invasion-of-privacy-tgj-600x600.jpg&ehk=X4s%2b%2bJrijOhD6kU2GyXFZAwb%2fTnpoTsLWI4tuwBwZFE%3d&risl=&pid=ImgRaw&r=0"
+                    src={album.album.cover}
                     alt="album-image"
                     id="header-img"
                   />
@@ -145,7 +147,6 @@ const AlbumPage = () => {
         </div>
         <div>
           <h2>Album</h2>
-          <SingleAlbum album={album} />
 
           {listsong.map((song, i) => (
             <SingleSong song={song} key={i} i={i} />

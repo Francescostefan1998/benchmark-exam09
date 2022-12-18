@@ -6,12 +6,12 @@ import MyNavbar from "./MyNavbar";
 import MySidebar from "./MySidebar";
 import { fetchAlbumSong } from "../redux/actions";
 import { addToFavouriteAction } from "../redux/actions";
-
+import { addToFavouriteSongs } from "../redux/actions";
 const SingleSong = ({ song, i }) => {
   const dispatch = useDispatch();
   return (
     <div
-      onClick={() => dispatch(addToFavouriteAction(song))}
+      onClick={() => dispatch(addToFavouriteSongs(song))}
       className="list-album"
       key={i}
     >
@@ -26,9 +26,9 @@ const SingleSong = ({ song, i }) => {
         </div>
       </div>
       <div className="time-song">
-        {(song.duration - (song.duration %= 60)) / 60 +
+        {/*{(song.duration - (song.duration %= 60)) / 60 +
           (9 < song.duration ? ":" : ":0") +
-          song.duration}
+          song.duration}*/}
       </div>
     </div>
   );

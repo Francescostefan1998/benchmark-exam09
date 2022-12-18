@@ -7,7 +7,8 @@
   box-sizing: border-box;
   padding-inline: 20px;
   position: sticky;
-  top: 0;
+  top: 15px;
+  z-index: 1;
 }
 
 #leftSideNavbar{
@@ -686,7 +687,9 @@ overflow: hidden;
     object-fit: cover;
    
 }
-
+.behind-nav{
+  z-index: 0;
+}
 .navigation-buttons{
     display: flex;
     gap: 15px;
