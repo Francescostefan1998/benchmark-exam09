@@ -4,15 +4,19 @@ import {
   SEARCH_SONG,
   ADD_TO_FAVOURITE_SONG_SINGLE,
 } from "../actions";
-
-const initialState = {
+import { Album } from "../../types/Album";
+import { ArrayOfAlbum } from "../../types/ArrayOfAlbum";
+import { Song } from "../../types/Song";
+import { ReduxStore } from "../../types/ReduxStore";
+import { AnyAction } from "@reduxjs/toolkit";
+const initialState: ReduxStore = {
   content: [],
   selected: null,
   search: [],
   favourite: null,
 };
 console.log(initialState.selected);
-const albumReducer = (state = initialState, action) => {
+const albumReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case ADD_TO_FAVOURITE_JOB:
       return {
