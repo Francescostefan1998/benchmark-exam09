@@ -7,6 +7,8 @@ import MyNavbar from "./MyNavbar";
 import MySidebar from "./MySidebar";
 import { fetchHomeSong } from "../redux/actions";
 import SingleAlbum from "./SingleAlbum";
+import * as React from "react"
+import { ReduxStore } from "../types/ReduxStore";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -14,7 +16,7 @@ const HomePage = () => {
     dispatch(fetchHomeSong());
     console.log("useeffect triggered");
   }, []);
-  const listalbum = useSelector((store) => store.album.search);
+  const listalbum = useSelector((store: ReduxStore) => store.search);
 
   return (
     <div className="main">
@@ -23,10 +25,10 @@ const HomePage = () => {
         <MyNavbar />
         <div>
           {listalbum && (
-            <div class="row">
-              <div class="col-12">
+            <div className="row">
+              <div className="col-12">
                 <h4>Albums</h4>
-                <div class="row" id="albums">
+                <div className="row" id="albums">
                   {listalbum.map((album, i) => (
                     <SingleAlbum album={album} key={i} i={i} />
                   ))}

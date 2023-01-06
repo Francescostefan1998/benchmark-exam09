@@ -8,6 +8,7 @@ import { AiFillHome } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { BiLibrary } from "react-icons/bi";
 import { fetchHomeSong } from "../redux/actions";
+import * as React from "react"
 
 const MySidebar = () => {
   const navigate = useNavigate();

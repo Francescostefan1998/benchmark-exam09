@@ -12,6 +12,9 @@ import { BsListUl } from "react-icons/bs";
 import { MdOutlineComputer } from "react-icons/md";
 import { BsFillVolumeUpFill } from "react-icons/bs";
 import { addToFavouriteSongs } from "../redux/actions";
+import * as React from "react"
+import { ReduxStore } from "../types/ReduxStore";
+
 const Player = () => {
   const dispatch = useDispatch();
 
@@ -19,7 +22,7 @@ const Player = () => {
     dispatch(addToFavouriteSongs(jobSelected));
     console.log("useeffect triggered");
   }, []);
-  const jobSelected = useSelector((store) => store.album.favourite);
+  const jobSelected = useSelector((store: ReduxStore) => store.favourite);
   console.log(jobSelected);
 
   const audio = new Audio(jobSelected.preview);

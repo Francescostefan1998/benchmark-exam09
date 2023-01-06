@@ -8,6 +8,7 @@ import { FaChevronRight } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
 import { fetchAlbumSong } from "../redux/actions";
 import { fetchHomeSong } from "../redux/actions";
+import * as React from "react"
 
 const MyNavbar = () => {
   const [query, setQuery] = useState("queen");

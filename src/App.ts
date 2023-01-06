@@ -1,7 +1,7 @@
-import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import * as React from "react";
 import MyNavbar from "./components/MyNavbar";
 import HomePage from "./components/HomePage";
 import ArtistPage from "./components/ArtistPage";
@@ -13,11 +13,13 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
+import { ReduxStore } from "./types/ReduxStore";
+import { Album } from "./types/Album";
 function App() {
   const dispatch = useDispatch();
-  const [refresh, setRefresh] = useState();
+  const [refresh, setRefresh] = useState<Album | null>();
   console.log(store);
-  const thissong = useSelector((store) => store.album.selected);
+  const thissong = useSelector((store: ReduxStore) => store.selected);
   console.log(thissong);
   useEffect(() => {
     setRefresh(thissong);

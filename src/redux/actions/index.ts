@@ -2,7 +2,8 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { Album } from "../../types/Album";
 import { ReduxStore } from "../../types/ReduxStore";
 import { Song } from "../../types/Song";
-
+import { ThunkAction } from "redux-thunk";
+import { AnyAction } from "@reduxjs/toolkit";
 export const ADD_TO_FAVOURITE_JOB = "ADD_TO_FAVOURITE_JOB";
 export const ADD_TO_FAVOURITE_SONG = "ADD_TO_FAVOURITE_SONG";
 export const SEARCH_SONG = "SEARCH_SONG";
@@ -76,3 +77,33 @@ export const fetchHomeSong = (query: string) => {
     }
   };
 };
+/*
+export const fetchHomeSong = (
+  query: string
+): ThunkAction<Promise<void>, ReduxStore, null, AnyAction> => {
+  return async (dispatch: Dispatch, getState: () => ReduxStore) => {
+    console.log("fetch function triggered");
+    try {
+      let resp = await fetch(
+        `https://striveschool-api.herokuapp.com/api/deezer/search?q=${query}`
+      );
+      console.log(resp);
+      if (resp.ok) {
+        let fetchedalbum = await resp.json();
+        console.log(fetchedalbum.data);
+
+        let data = fetchedalbum.data;
+        console.log(data);
+        dispatch({
+          type: SEARCH_SONG,
+          payload: data,
+        });
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+*/

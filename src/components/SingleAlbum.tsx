@@ -7,6 +7,8 @@ import MySidebar from "./MySidebar";
 import { fetchAlbumSong } from "../redux/actions";
 import { addToFavouriteAction } from "../redux/actions";
 import { fetchHomeSong } from "../redux/actions";
+import * as React from "react"
+
 const SingleAlbum = ({ album, i }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -8,7 +8,7 @@ import { Album } from "../../types/Album";
 import { ArrayOfAlbum } from "../../types/ArrayOfAlbum";
 import { Song } from "../../types/Song";
 import { ReduxStore } from "../../types/ReduxStore";
-import { AnyAction } from "@reduxjs/toolkit";
+import { AnyAction } from "redux";
 const initialState: ReduxStore = {
   content: [],
   selected: null,

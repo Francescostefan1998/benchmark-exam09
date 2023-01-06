@@ -8,17 +8,30 @@ import { fetchAlbumSong } from "../redux/actions";
 import { changecolor } from "../redux/actions";
 import SingleSong from "./SingleSong";
 import SingleAlbum from "./SingleAlbum";
-const AlbumPage = ({ album }) => {
-  const [refresh, setRefresh] = useState("");
+import { ReduxStore } from "../types/ReduxStore";
+import { Album } from "../types/Album";
+import * as React from "react"
+import { ThunkDispatch } from "redux-thunk";
+import { Connect } from "react-redux";
+interface AlbumProps {
+  album: Album | null
+  fetchAlbumS: () => void
+}
+const mapStateToProps = (state: ReduxStore) => state
+const mapDispatchToProps = (dispatch: ThunkDispatch) => ({
+  fetchAlbumS: () => dispatch(fetchAlbumSong("metallica"))
+})
+const AlbumPage = ({ album }: AlbumProps) => {
+  const [refresh, setRefresh] = useState<Album | null>();
   const dispatch = useDispatch();
   /* const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(changecolor(e));
   }; */
-  const listsong = useSelector((store) => store.album.content);
-  const album1 = useSelector((store) => store.album.selected);
+  const listsong = useSelector((store: ReduxStore) => store.content);
+  const album1 = useSelector((store: ReduxStore) => store.selected);
   useEffect(() => {
-    dispatch(fetchAlbumSong("metallica"));
+    this.props.fetchAlbumS();
     console.log("useeffect triggered");
     setRefresh(album);
   }, [album]);
@@ -53,7 +66,7 @@ const AlbumPage = ({ album }) => {
                 <div id="play-button" onclick="changeplay(event)">
                   <div id="play-symbol"></div>
                 </div>
-                <div onclick="like(event)" id="faheart">
+                <div onClick="like(event)" id="faheart">
                   <i className="fa-regular fa-heart"></i>
                 </div>
 
