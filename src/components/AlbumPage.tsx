@@ -6,50 +6,59 @@ import { ReduxStore } from "../types/ReduxStore";
 import { Album } from "../types/Album";
 import * as React from "react"
 import { ThunkDispatch } from "redux-thunk";
-import { Component } from "react";
 import { Action } from "@reduxjs/toolkit";
 import { fetchHomeSong } from "../redux/actions";
-interface AlbumProps {
+import {useEffect} from "react"
+import { useDispatch } from "react-redux";
+import { connect } from 'react-redux';
+type AlbumProps = {
   album: Album | null
-  fetchAlbumS: () => void
+  fetchAlbumS: (argument: string) => void
   listsong: ReduxStore["content"]
   album1: ReduxStore["selected"]
+  fetchHomeS: (argument: string) => void
 }
 
-type myNavbarProps = {
-  fetchHomeS: (query: string) => void;
-};
+const mapDispatchToProp = (dispatch: ThunkDispatch<Action, any, any>) => ({
+  fetchHomeS: (query: string) => dispatch(fetchHomeSong(query)),
+});
 const mapdispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
   fetchHomeS: (query: string) => dispatch(fetchHomeSong(query)),
 });
+
 
 const mapStateToProps = (state: ReduxStore) => state
 const mapDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
   fetchAlbumS: () => dispatch(fetchAlbumSong("metallica"))
 })
-class AlbumPage extends Component<AlbumProps> {
+const AlbumPage = (props: AlbumProps) =>  {
   /* const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(changecolor(e));
   }; */
-  componentDidMount = () => {
-    this.props.fetchAlbumS();
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    props.fetchAlbumS("dd");
     console.log("useeffect triggered");
-  }
-render(){
+  }, []);
+
+
   return (
     <div className="main">
-      <MySidebar />
+      <MySidebar {...mapDispatchToProp(dispatch)}/>
+      
       <div className="innerMain">
-        <MyNavbar  {...mapdispatchToProps(dispatch)}/>
+      <MyNavbar {...mapdispatchToProps(dispatch)} />
+        
         <div className="behind-nav">
           <div className="content">
             <div id="album-header">
               <div id="cover-black"></div>
               <div className="row" id="album-title-image">
                 <div className="col-12 col-md-4 col-lg-3" id="album-image">
-                  {this.props.album && <img
-                    src={this.props.album.album.cover}
+                  {props.album && <img
+                    src={props.album.album.cover}
                     alt="album-image"
                     id="header-img"
                   />}
@@ -109,12 +118,15 @@ render(){
                               d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
                             />
                           </svg>
+                        
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-4">Share</div>
                       <div className="col-2">
+                        <a href="">
                           <i className="fa-solid fa-caret-right"></i>{" "}
+                        </a>
                       </div>
                     </div>
 
@@ -123,6 +135,7 @@ render(){
                     <div className="row">
                       <div className="col-12">Open with desktop app</div>
                       <div className="col-0">
+                        <a href=""> </a>
                       </div>
                     </div>
                   </div>
@@ -154,16 +167,16 @@ render(){
             </div>
           </div>
         </div>
-        {this.props.album && (<div>
+        {props.album && (<div>
           <h2>Album</h2>
 
-          {this.props.listsong.map((song, i) => (
+          {props.listsong.map((song, i) => (
             <SingleSong song={song} key={i} i={i} />
           ))}
         </div>)}
       </div>
     </div>
   );
-}}
+}
 
 export default AlbumPage;

@@ -8,26 +8,42 @@ import { fetchAlbumSong } from "../redux/actions";
 import { addToFavouriteAction } from "../redux/actions";
 import { fetchHomeSong } from "../redux/actions";
 import * as React from "react"
+import { ThunkDispatch } from "redux-thunk";
+import { Action } from "@reduxjs/toolkit";
+import { Album } from "../types/Album";
+import { AlbumSmall } from "../types/AlbumSmall";
+type mySingleAlbumProps = {
+  fetchAlbumS: (query: string | any) => void
+  album: Album
+  i: number
+  key: number
+}
 
-const SingleAlbum = ({ album, i }) => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
+  fetchAlbumS: (query: string) => dispatch(fetchAlbumSong(query))
+});
+
+
+
+const SingleAlbum = (props: mySingleAlbumProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(album.album.id);
-  console.log(i);
-  const handleSubmit = async (e) => {
+  console.log(props.album.album.id);
+  console.log(props.i);
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    dispatch(fetchAlbumSong(album.album.id));
+    props.fetchAlbumS(props.album.album.id);
     console.log(e);
     navigate("/albumpage/:albumId");
   };
   return (
     <div className="col-md-2" onClick={handleSubmit}>
       <div className="big-card album">
-        <img src={album.album.cover} alt={album.title} />
-        <h4>{album.title}</h4>
+        <img src={props.album.album.cover} alt={props.album.title} />
+        <h4>{props.album.title}</h4>
         <h5>Album</h5>
         <div className="time-song">
-          {album.duration}
+          {props.album.duration}
           {/*  {(album.duration - (album.duration %= 60)) / 60 +
             (9 < album.duration ? ":" : ":0") +
             album.duration}*/}

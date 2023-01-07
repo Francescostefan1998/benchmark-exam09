@@ -13,7 +13,7 @@ import { Action } from "@reduxjs/toolkit";
 import { ThunkDispatch } from "redux-thunk";
 
 
-type myNavbarProps = {
+export type myNavbarProps = {
   fetchHomeS: (query: string) => void
 }
 
@@ -28,12 +28,12 @@ const MyNavbar = (props: myNavbarProps) => {
   const [dropdown, setDropDown] = useState("dropdown-album");
   const dispatch = useDispatch();
   console.log(query);
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setQuery(e.target.value);
     props.fetchHomeS(query);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     props.fetchHomeS(query);
 

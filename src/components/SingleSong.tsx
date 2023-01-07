@@ -8,8 +8,12 @@ import { fetchAlbumSong } from "../redux/actions";
 import { addToFavouriteAction } from "../redux/actions";
 import { addToFavouriteSongs } from "../redux/actions";
 import * as React from "react"
-
-const SingleSong = ({ song, i }) => {
+import { Song } from "../types/Song";
+interface singleSongProps {
+  song: Song
+  i: number
+}
+const SingleSong = ({ song, i }: singleSongProps) => {
   const dispatch = useDispatch();
   return (
     <div

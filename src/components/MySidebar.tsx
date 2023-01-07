@@ -9,8 +9,18 @@ import { BsSearch } from "react-icons/bs";
 import { BiLibrary } from "react-icons/bi";
 import { fetchHomeSong } from "../redux/actions";
 import * as React from "react"
+import { Album } from "../types/Album";
+import { ThunkDispatch } from "redux-thunk";
+import { Action } from "@reduxjs/toolkit";
+type mySidebarProps = {
+  fetchHomeS: (query: string) => void
+}
 
-const MySidebar = () => {
+const mapDispatchToProp = (dispatch: ThunkDispatch<Action, any, any>) => ({
+  fetchHomeS: (query: string) => dispatch(fetchHomeSong(query))
+});
+
+const MySidebar = (props: mySidebarProps) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   return (
@@ -25,7 +35,7 @@ const MySidebar = () => {
           </div>
           <Link
             to="/"
-            onClick={() => dispatch(fetchHomeSong("queen"))}
+            onClick={() => props.fetchHomeS("queen")}
             className="col-10"
           >
             Home

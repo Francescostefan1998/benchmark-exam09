@@ -8,7 +8,7 @@ export const ADD_TO_FAVOURITE_JOB = "ADD_TO_FAVOURITE_JOB";
 export const ADD_TO_FAVOURITE_SONG = "ADD_TO_FAVOURITE_SONG";
 export const SEARCH_SONG = "SEARCH_SONG";
 export const ADD_TO_FAVOURITE_SONG_SINGLE = "ADD_TO_FAVOURITE_SONG_SINGLE";
-export const fetchAlbumSong = (query) => {
+export const fetchAlbumSong = (query: string) => {
   return async (dispatch: Dispatch, getState: () => ReduxStore) => {
     console.log("fetch function triggered");
     try {
@@ -33,19 +33,19 @@ export const fetchAlbumSong = (query) => {
     }
   };
 };
-export const addToFavouriteAction = (jobSelected: Album) => {
+export const addToFavouriteAction = (jobSelected: Album | null) => {
   return {
     type: ADD_TO_FAVOURITE_SONG,
     payload: jobSelected,
   };
 };
-export const changecolor = (jobSelected: Album) => {
+export const changecolor = (jobSelected: Album | null) => {
   return {
     type: ADD_TO_FAVOURITE_SONG,
     payload: jobSelected,
   };
 };
-export const addToFavouriteSongs = (song: Song) => {
+export const addToFavouriteSongs = (song: Song | null) => {
   return {
     type: ADD_TO_FAVOURITE_SONG_SINGLE,
     payload: song,

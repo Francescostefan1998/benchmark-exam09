@@ -25,14 +25,16 @@ const Player = () => {
   const jobSelected = useSelector((store: ReduxStore) => store.favourite);
   console.log(jobSelected);
 
-  const audio = new Audio(jobSelected.preview);
-
+  let audio = new Audio
+if(jobSelected !== null){
+  audio = new Audio(jobSelected.preview);
+}
   const start = () => {
     audio.play();
   };
   return (
     <div>
-      {jobSelected !== undefined ? (
+      {jobSelected !== null ? (
         <div id="player">
           <div id="leftSidePlayer">
             <div id="titleSongPlayer">
