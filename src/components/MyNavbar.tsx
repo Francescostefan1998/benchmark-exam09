@@ -1,12 +1,9 @@
-import { useEffect, useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import {useState } from "react";
+import { Form} from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
-import { fetchAlbumSong } from "../redux/actions";
 import { fetchHomeSong } from "../redux/actions";
 import * as React from "react"
 import { Action } from "@reduxjs/toolkit";
@@ -65,7 +62,7 @@ const MyNavbar = (props: myNavbarProps) => {
       <div id="rightSideNavbar">
         <div className="user">
           <div>
-            <img src="https://th.bing.com/th/id/OIP.zc3XRPZxUt4Xt7zDZYLa_wHaHa?pid=ImgDet&rs=1" />
+            <img src="https://th.bing.com/th/id/OIP.zc3XRPZxUt4Xt7zDZYLa_wHaHa?pid=ImgDet&rs=1" alt="image"/>
           </div>
           <div>John Doe</div>
           <div
@@ -90,7 +87,6 @@ const MyNavbar = (props: myNavbarProps) => {
               <div className="row drop-list-song">
                 <div className="col-8">Account</div>
                 <div className="col-2">
-                  <a href="">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -108,20 +104,17 @@ const MyNavbar = (props: myNavbarProps) => {
                         d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
                       />
                     </svg>
-                  </a>
                 </div>
               </div>
 
               <div className="row drop-list-song">
                 <div className="col-8">Profile</div>
                 <div className="col-2">
-                  <a href=""> </a>
                 </div>
               </div>
               <div className="row drop-list-song">
                 <div className="col-10">Do upgrade</div>
                 <div className="col-2">
-                  <a href="">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -139,13 +132,11 @@ const MyNavbar = (props: myNavbarProps) => {
                         d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
                       />
                     </svg>
-                  </a>
                 </div>
               </div>
               <div className="row drop-list-song">
                 <div className="col-8">Assistance</div>
                 <div className="col-2">
-                  <a href="">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -163,13 +154,11 @@ const MyNavbar = (props: myNavbarProps) => {
                         d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
                       />
                     </svg>
-                  </a>
                 </div>
               </div>
               <div className="row drop-list-song">
                 <div className="col-8">Download</div>
                 <div className="col-2">
-                  <a href="">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -187,13 +176,11 @@ const MyNavbar = (props: myNavbarProps) => {
                         d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
                       />
                     </svg>
-                  </a>
                 </div>
               </div>
               <div className="row drop-list-song">
                 <div className="col-8">Settings</div>
                 <div className="col-2">
-                  <a href="">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -211,7 +198,6 @@ const MyNavbar = (props: myNavbarProps) => {
                         d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
                       />
                     </svg>
-                  </a>
                 </div>
               </div>
               <hr className="hrr" />
@@ -219,7 +205,6 @@ const MyNavbar = (props: myNavbarProps) => {
               <div className="row drop-list-song">
                 <div className="col-4">Exit</div>
                 <div className="col-2">
-                  <a href="">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -237,7 +222,6 @@ const MyNavbar = (props: myNavbarProps) => {
                         d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
                       />
                     </svg>
-                  </a>
                 </div>
               </div>
             </div>

@@ -1,9 +1,6 @@
-import { useState, useEffect } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import {useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { changecolor } from "../redux/actions";
 import { FaHeart } from "react-icons/fa";
 import { BiShuffle } from "react-icons/bi";
 import { AiFillStepBackward } from "react-icons/ai";

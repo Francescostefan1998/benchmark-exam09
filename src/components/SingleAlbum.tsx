@@ -1,17 +1,10 @@
-import { useState, useEffect } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import MyNavbar from "./MyNavbar";
-import MySidebar from "./MySidebar";
 import { fetchAlbumSong } from "../redux/actions";
-import { addToFavouriteAction } from "../redux/actions";
-import { fetchHomeSong } from "../redux/actions";
 import * as React from "react"
 import { ThunkDispatch } from "redux-thunk";
 import { Action } from "@reduxjs/toolkit";
 import { Album } from "../types/Album";
-import { AlbumSmall } from "../types/AlbumSmall";
 type mySingleAlbumProps = {
   fetchAlbumS: (query: string | any) => void
   album: Album

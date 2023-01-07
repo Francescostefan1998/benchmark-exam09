@@ -1,8 +1,7 @@
 
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
 import MyNavbar from "./MyNavbar";
 import MySidebar from "./MySidebar";
 import SingleAlbum from "./SingleAlbum";
@@ -10,9 +9,6 @@ import { fetchHomeSong, fetchAlbumSong } from "../redux/actions";
 import { ReduxStore } from "../types/ReduxStore";
 import { ThunkDispatch } from "redux-thunk";
 import { Action } from "@reduxjs/toolkit";
-import * as React from "react"
-import { myNavbarProps } from "./MyNavbar";
-import connect from "react-redux"
 
 
 type HomePageProps = {

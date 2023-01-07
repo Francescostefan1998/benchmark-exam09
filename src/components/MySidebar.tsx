@@ -1,7 +1,4 @@
-import { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { useDispatch, useStore } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { BsSpotify } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
@@ -9,7 +6,6 @@ import { BsSearch } from "react-icons/bs";
 import { BiLibrary } from "react-icons/bi";
 import { fetchHomeSong } from "../redux/actions";
 import * as React from "react"
-import { Album } from "../types/Album";
 import { ThunkDispatch } from "redux-thunk";
 import { Action } from "@reduxjs/toolkit";
 type mySidebarProps = {
@@ -21,8 +17,6 @@ const mapDispatchToProp = (dispatch: ThunkDispatch<Action, any, any>) => ({
 });
 
 const MySidebar = (props: mySidebarProps) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   return (
     <div id="sideBar" className="col-12 col-md-3">
       <div id="right-logo">

@@ -10,7 +10,6 @@ import { Action } from "@reduxjs/toolkit";
 import { fetchHomeSong } from "../redux/actions";
 import {useEffect} from "react"
 import { useDispatch } from "react-redux";
-import { connect } from 'react-redux';
 type AlbumProps = {
   album: Album | null
   fetchAlbumS: (argument: string) => void
@@ -27,10 +26,7 @@ const mapdispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
 });
 
 
-const mapStateToProps = (state: ReduxStore) => state
-const mapDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
-  fetchAlbumS: () => dispatch(fetchAlbumSong("metallica"))
-})
+
 const AlbumPage = (props: AlbumProps) =>  {
   /* const handleSubmit = async (e) => {
     e.preventDefault();
