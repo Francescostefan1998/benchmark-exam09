@@ -1,57 +1,58 @@
-import { useState, useEffect } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import MyNavbar from "./MyNavbar";
 import MySidebar from "./MySidebar";
 import { fetchAlbumSong } from "../redux/actions";
-import { changecolor } from "../redux/actions";
 import SingleSong from "./SingleSong";
-import SingleAlbum from "./SingleAlbum";
 import { ReduxStore } from "../types/ReduxStore";
 import { Album } from "../types/Album";
 import * as React from "react"
 import { ThunkDispatch } from "redux-thunk";
-import { Connect } from "react-redux";
+import { Component } from "react";
+import { Action } from "@reduxjs/toolkit";
+import { fetchHomeSong } from "../redux/actions";
 interface AlbumProps {
   album: Album | null
   fetchAlbumS: () => void
+  listsong: ReduxStore["content"]
+  album1: ReduxStore["selected"]
 }
+
+type myNavbarProps = {
+  fetchHomeS: (query: string) => void;
+};
+const mapdispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
+  fetchHomeS: (query: string) => dispatch(fetchHomeSong(query)),
+});
+
 const mapStateToProps = (state: ReduxStore) => state
-const mapDispatchToProps = (dispatch: ThunkDispatch) => ({
+const mapDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
   fetchAlbumS: () => dispatch(fetchAlbumSong("metallica"))
 })
-const AlbumPage = ({ album }: AlbumProps) => {
-  const [refresh, setRefresh] = useState<Album | null>();
-  const dispatch = useDispatch();
+class AlbumPage extends Component<AlbumProps> {
   /* const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(changecolor(e));
   }; */
-  const listsong = useSelector((store: ReduxStore) => store.content);
-  const album1 = useSelector((store: ReduxStore) => store.selected);
-  useEffect(() => {
+  componentDidMount = () => {
     this.props.fetchAlbumS();
     console.log("useeffect triggered");
-    setRefresh(album);
-  }, [album]);
-
+  }
+render(){
   return (
     <div className="main">
       <MySidebar />
       <div className="innerMain">
-        <MyNavbar />
+        <MyNavbar  {...mapdispatchToProps(dispatch)}/>
         <div className="behind-nav">
           <div className="content">
             <div id="album-header">
               <div id="cover-black"></div>
               <div className="row" id="album-title-image">
                 <div className="col-12 col-md-4 col-lg-3" id="album-image">
-                  <img
-                    src={album.album.cover}
+                  {this.props.album && <img
+                    src={this.props.album.album.cover}
                     alt="album-image"
                     id="header-img"
-                  />
+                  />}
                 </div>
                 <div
                   className="col-12 col-md-8 col-lg-8"
@@ -63,14 +64,14 @@ const AlbumPage = ({ album }: AlbumProps) => {
               <div id="background-pink"></div>
 
               <div id="inner-top-container">
-                <div id="play-button" onclick="changeplay(event)">
+                <div id="play-button">
                   <div id="play-symbol"></div>
                 </div>
-                <div onClick="like(event)" id="faheart">
+                <div id="faheart">
                   <i className="fa-regular fa-heart"></i>
                 </div>
 
-                <div id="settings" onclick="setting(event)">
+                <div id="settings">
                   <i className="fa-solid fa-ellipsis"> </i>
 
                   <div className="dropdown-settings" id="appear">
@@ -91,7 +92,6 @@ const AlbumPage = ({ album }: AlbumProps) => {
                     <div className="row">
                       <div className="col-4">Link</div>
                       <div className="col-2">
-                        <a href="">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"
@@ -109,15 +109,12 @@ const AlbumPage = ({ album }: AlbumProps) => {
                               d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
                             />
                           </svg>
-                        </a>
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-4">Share</div>
                       <div className="col-2">
-                        <a href="">
                           <i className="fa-solid fa-caret-right"></i>{" "}
-                        </a>
                       </div>
                     </div>
 
@@ -126,7 +123,6 @@ const AlbumPage = ({ album }: AlbumProps) => {
                     <div className="row">
                       <div className="col-12">Open with desktop app</div>
                       <div className="col-0">
-                        <a href=""> </a>
                       </div>
                     </div>
                   </div>
@@ -158,16 +154,16 @@ const AlbumPage = ({ album }: AlbumProps) => {
             </div>
           </div>
         </div>
-        <div>
+        {this.props.album && (<div>
           <h2>Album</h2>
 
-          {listsong.map((song, i) => (
+          {this.props.listsong.map((song, i) => (
             <SingleSong song={song} key={i} i={i} />
           ))}
-        </div>
+        </div>)}
       </div>
     </div>
   );
-};
+}}
 
 export default AlbumPage;

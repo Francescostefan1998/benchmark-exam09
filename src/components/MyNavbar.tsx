@@ -9,20 +9,34 @@ import { BsSearch } from "react-icons/bs";
 import { fetchAlbumSong } from "../redux/actions";
 import { fetchHomeSong } from "../redux/actions";
 import * as React from "react"
+import { Action } from "@reduxjs/toolkit";
+import { ThunkDispatch } from "redux-thunk";
 
-const MyNavbar = () => {
+
+type myNavbarProps = {
+  fetchHomeS: (query: string) => void
+}
+
+const mapDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
+  fetchHomeS: (query: string) => dispatch(fetchHomeSong(query))
+});
+
+
+
+const MyNavbar = (props: myNavbarProps) => {
   const [query, setQuery] = useState("queen");
   const [dropdown, setDropDown] = useState("dropdown-album");
   const dispatch = useDispatch();
   console.log(query);
   const handleChange = (e) => {
     setQuery(e.target.value);
-    dispatch(fetchHomeSong(query));
+    props.fetchHomeS(query);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(fetchHomeSong(query));
+    props.fetchHomeS(query);
+
   };
 
   return (
