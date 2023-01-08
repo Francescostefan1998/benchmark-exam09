@@ -8,7 +8,7 @@ import { fetchHomeSong } from "../redux/actions";
 import * as React from "react"
 import { Action } from "@reduxjs/toolkit";
 import { ThunkDispatch } from "redux-thunk";
-
+import { useEffect } from "react";
 
 export type myNavbarProps = {
   fetchHomeS: (query: string) => void
@@ -35,6 +35,11 @@ const MyNavbar = (props: myNavbarProps) => {
     props.fetchHomeS(query);
 
   };
+  useEffect(() => {
+    console.log("useeffect triggered");
+
+    props.fetchHomeS(query);
+  }, []);
 
   return (
     <div id="myNavbar">

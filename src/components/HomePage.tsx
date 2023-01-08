@@ -9,6 +9,8 @@ import { fetchHomeSong, fetchAlbumSong } from "../redux/actions";
 import { ReduxStore } from "../types/ReduxStore";
 import { ThunkDispatch } from "redux-thunk";
 import { Action } from "@reduxjs/toolkit";
+import { connect } from "tls";
+
 
 
 type HomePageProps = {
@@ -17,6 +19,7 @@ type HomePageProps = {
 
 const mapdispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
   fetchHomeS: (query: string) => dispatch(fetchHomeSong(query)),
+
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({

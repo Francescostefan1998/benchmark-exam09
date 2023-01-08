@@ -14,7 +14,7 @@ import { ReduxStore } from "../types/ReduxStore";
 
 const Player = () => {
   const dispatch = useDispatch();
-
+console.log("Player")
   useEffect(() => {
     dispatch(addToFavouriteSongs(jobSelected));
     console.log("useeffect triggered");
