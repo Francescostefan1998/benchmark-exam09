@@ -7,14 +7,12 @@ import { store, persistor } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Song } from "./types/Song";
-interface mysong {
-  song: Song[]
-}
+
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <App song={[]}/>
+      <App/>
     </PersistGate>
   </Provider>
 );

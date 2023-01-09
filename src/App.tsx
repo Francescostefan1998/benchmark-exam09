@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
+import React, { Dispatch } from "react";
 import MyNavbar from "./components/MyNavbar";
 import HomePage from "./components/HomePage";
 import ArtistPage from "./components/ArtistPage";
@@ -9,43 +9,50 @@ import AlbumPage from "./components/AlbumPage";
 import MySidebar from "./components/MySidebar";
 import Player from "./components/Player";
 import { store } from "./redux/store";
-import { useSelector } from "react-redux";
+import { MapDispatchToProps, useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { useEffect } from "react";
 import { ReduxStore } from "./types/ReduxStore";
 import { Album } from "./types/Album";
 import { fetchAlbumSong, fetchHomeSong } from "./redux/actions";
-
+import { Component } from "react";
 import { Song } from "./types/Song";
-interface mysong {
-  song: Song[]
-}
-function App (props: mysong){
-  const dispatch = useDispatch();
-  const [refresh, setRefresh] = useState<Album | null>();
-  console.log(store);
-  const thissong = useSelector((store: ReduxStore) => store.selected);
-  console.log(thissong);
-  useEffect(() => {
-    setRefresh(thissong);
-  }, [thissong]);
+import { ThunkDispatch } from "redux-thunk";
+import { Action } from "redux";
+import { connect } from "react-redux";
 
+const mapAppStateToProps = (state: ReduxStore) => state
+
+const mapAppDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
+  fetchHomeS: (query: string) => dispatch(fetchHomeSong(query))
+});
+
+class App extends Component{
+ 
+state = {
+  albumSelected: null,
+  thissong: useSelector((store: ReduxStore) => store.selected),
+song: []
+}
+
+  
+ 
+render(){
   return (
     <div id="biggestMain">
       <BrowserRouter>
         <div>
           <Routes>
           <Route   
-            path="/"
+            path="/" 
             element={<HomePage fetchAlbumS={fetchAlbumSong}/>}
           />
           <Route
-            path="/albumpage/:albumId"
-            element={ <AlbumPage album={thissong} fetchHomeS={fetchHomeSong}  fetchAlbumS={fetchAlbumSong} listsong={props.song} album1={thissong}/>}
+            path="/albumpage/:albumId" 
+            element={ <AlbumPage album={this.state.albumSelected} fetchHomeS={fetchHomeSong}  fetchAlbumS={fetchAlbumSong} listsong={this.state.song} album1={this.state.thissong}/>}
           />
           <Route
-            path="/artistpage/:artistId"
+            path="/artistpage/:artistId" 
             element={<ArtistPage />}
           /></Routes>
           <Player />
@@ -53,6 +60,6 @@ function App (props: mysong){
       </BrowserRouter>
     </div>
   );
-}
+}}
 
-export default App;
+export default connect(mapAppStateToProps, mapAppDispatchToProps)(App);
