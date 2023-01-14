@@ -12,25 +12,41 @@ import { useEffect } from "react";
 import {Component} from "react"
 import { connect } from "react-redux";
 import { ReduxStore } from "../types/ReduxStore";
-const mapNavbarStateToProps = (state: ReduxStore) => state
+import { Album } from "../types/Album";
+const mapNavbarStateToProps = (state: ReduxStore) => {
+  return {
+    album: state.selected,
+    listAlbum: state.search}}
 
 
 const mapNavbarDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
-  fetchHomeS: (query: string) => dispatch(fetchHomeSong(query))
+  fetchHomeS: (event: string) => dispatch(fetchHomeSong(event))
 });
+interface navbarPageProps {
+  fetchHomeS: (query: string) => void,
+  album: ReduxStore["selected"]
+  listAlbum: ReduxStore["search"]
+  }
+  interface navbarPageState {
+    search: Album[]
+    selected: Album | null
+    query: string
+  }
 
 
-
-class MyNavbar extends Component{
+class MyNavbar extends Component<navbarPageProps, navbarPageState>{
   //const [query, setQuery] = useState("queen");
   //const [dropdown, setDropDown] = useState("dropdown-album");
   //const dispatch = useDispatch();
  // console.log(query);
- /* const handleChange = (e: any) => {
-    setQuery(e.target.value);
-    props.fetchHomeS(query);
-  };
+ state: navbarPageState = {
+  search: this.props.listAlbum.albumArray,
+  selected: null,
+  query: "metallica"
+}
 
+
+/*
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     props.fetchHomeS(query);
@@ -52,10 +68,13 @@ class MyNavbar extends Component{
           <BsSearch className="text-dark" />
           <Form /*onSubmit={handleSubmit}*/>
             <input
-              type="search"/*
-              value={query}
-              onChange={handleChange}
-              placeholder="What do you want to listen to?"*/
+              type="search"
+              value={this.state.query}
+              onChange={(e) => {
+                this.setState({query: e.target.value});
+                this.props.fetchHomeS(e.target.value);
+            }}
+              placeholder="What do you want to listen to?"
             />
           </Form>
         </div>

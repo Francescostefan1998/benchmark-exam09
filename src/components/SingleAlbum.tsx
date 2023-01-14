@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { fetchAlbumSong } from "../redux/actions";
 import * as React from "react"
 import { ThunkDispatch } from "redux-thunk";
@@ -9,15 +9,14 @@ import {Component} from "react"
 import { connect } from "react-redux";
 import { ReduxStore } from "../types/ReduxStore";
 
-
 const mapSingleAlbumStateToProps = (state: ReduxStore) => state
-
 const mapSingleAlbumDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
-  fetchAlbumS: () => dispatch(fetchAlbumSong("7856445"))
+  fetchAlbumS: (id: any) => dispatch(fetchAlbumSong(id))
   
 });
 interface SingleAlbumProps {
   album: Album 
+  fetchAlbumS: (id: any) => void
 }
 
 class SingleAlbum extends Component<SingleAlbumProps> { 
@@ -27,20 +26,29 @@ class SingleAlbum extends Component<SingleAlbumProps> {
     console.log(e);
     navigate("/albumpage/:albumId");
   };*/
+
+
   render(){
+    
+
   return (
-    <div className="col-md-2" /*onClick={handleSubmit}*/>
+    <div className="col-md-2">{/*onClick={async (e: any) => {
+      e.preventDefault();
+      await this.props.fetchAlbumS(this.props.album.id);
+      console.log(e);
+      await this.setState({ redirect: true });;
+    }} */} <Link  onClick={(event) => this.props.fetchAlbumS(this.props.album.album.id)} to={"/albumpage/:albumId"}>
       <div className="big-card album">
-        <img /*src=props.album.album.cover alt=props.album.title*/ />
-        <h4>{/*props.album.title*/}</h4>
-        <h5>{this.props.album.title}</h5>
+        <img src={this.props.album.album.cover} alt={this.props.album.title}/>
+        <h4>{this.props.album.title}</h4>
+        <h5>{this.props.album.artist.name}</h5>
         <div className="time-song">
-          {/*props.album.duration*/}
-          {/*  {(album.duration - (album.duration %= 60)) / 60 +
+          {this.props.album.duration}
+          {/*{(album.duration - (album.duration %= 60)) / 60 +
             (9 < album.duration ? ":" : ":0") +
             album.duration}*/}
         </div>
-      </div>
+      </div></Link>
     </div>
   );
 }};
