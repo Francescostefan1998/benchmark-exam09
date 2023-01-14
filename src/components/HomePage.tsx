@@ -12,7 +12,10 @@ import { Action } from "redux"
 import { connect } from "react-redux";
 import { Component } from "react"
 import { Album } from "../types/Album";
-const mapHomeStateToProps = (state: ReduxStore) => state
+const mapHomeStateToProps = (state: ReduxStore) => {
+  return {
+    album: state.selected,
+    listAlbum: state.search}}
 
 const mapHomeDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
   fetchHomeS: () => dispatch(fetchHomeSong("metallica"))
@@ -33,13 +36,17 @@ console.log(this.props.album)
 console.log(this.state.selected)
 console.log(this.props.listAlbum)
 console.log(this.state.search)
-
+this.setState({search: this.props.listAlbum.albumArray})
   }
 //changeAlbum = (selected: Album) =>  this.setState({selected: selected})
-
+componentDidUpdate(prevProps: any) {
+  if (this.props.listAlbum !== prevProps.listAlbum) {
+    this.setState({search: this.props.listAlbum.albumArray});
+  }
+}
   state: homePageState = {
-    search: [],
-    selected: null ,
+    search: this.props.listAlbum.albumArray,
+    selected: null,
   }
  
 render() {

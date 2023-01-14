@@ -1,4 +1,4 @@
-import {
+/*import {
   configureStore,
   combineReducers,
   getDefaultMiddleware,
@@ -21,14 +21,13 @@ const persistConfig = {
 const bigReducer = combineReducers({
   album: albumReducer,
  
-  /*
+  
   
     store:{
       job:{
         content:[]
       }
     }
-    */
 });
 const persistedReducer = persistReducer(persistConfig, bigReducer);
 export const store = configureStore({
@@ -40,3 +39,46 @@ export const store = configureStore({
     }),
 });
 export const persistor = persistStore(store);
+    */
+import { Album } from "../../types/Album";
+import { ArrayOfAlbum } from "../../types/ArrayOfAlbum";
+import { Song } from "../../types/Song";
+import { ReduxStore } from "../../types/ReduxStore";
+import { AnyAction } from "redux";
+import {
+  contentReducer,
+  favouriteReducer,
+  selectedReducer,
+  searchReducer,
+} from "../reducers/albumReducer";
+import thunk from "redux-thunk";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+
+const composeEnhancers =
+  (window as any)._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;
+
+export const initialState: ReduxStore = {
+  content: {
+    song: [],
+  },
+  selected: {
+    albumSelected: null,
+  },
+  search: { albumArray: [] },
+  favourite: { songSelected: null },
+};
+
+const bigReducer = combineReducers({
+  content: contentReducer,
+  selected: selectedReducer,
+  search: searchReducer,
+  favourite: favouriteReducer,
+});
+const configureStore = () =>
+  createStore(
+    bigReducer,
+    initialState,
+    composeEnhancers(applyMiddleware(thunk))
+  );
+
+export default configureStore;

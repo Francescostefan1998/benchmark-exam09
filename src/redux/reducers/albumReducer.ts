@@ -9,41 +9,66 @@ import { ArrayOfAlbum } from "../../types/ArrayOfAlbum";
 import { Song } from "../../types/Song";
 import { ReduxStore } from "../../types/ReduxStore";
 import { AnyAction } from "redux";
-const initialState: ReduxStore = {
-  content: [],
-  selected: null,
-  search: [],
-  favourite: null,
-};
-console.log(initialState);
-const albumReducer = (state = initialState, action: AnyAction) => {
+import { initialState } from "../store";
+
+export const contentReducer = (
+  state = initialState.content,
+  action: AnyAction
+) => {
   switch (action.type) {
     case ADD_TO_FAVOURITE_JOB:
       return {
         ...state,
 
-        content: action.payload,
-      };
-    case ADD_TO_FAVOURITE_SONG:
-      return {
-        ...state,
-
-        selected: action.payload,
-      };
-    case SEARCH_SONG:
-      return {
-        ...state,
-
-        search: action.payload,
-      };
-    case ADD_TO_FAVOURITE_SONG_SINGLE:
-      return {
-        ...state,
-
-        favourite: action.payload,
+        song: action.payload,
       };
     default:
       return state;
   }
 };
-export default albumReducer;
+
+export const selectedReducer = (
+  state = initialState.selected,
+  action: AnyAction
+) => {
+  switch (action.type) {
+    case ADD_TO_FAVOURITE_SONG:
+      return {
+        ...state,
+
+        albumSelected: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+export const searchReducer = (
+  state = initialState.search,
+  action: AnyAction
+) => {
+  switch (action.type) {
+    case SEARCH_SONG:
+      return {
+        ...state,
+
+        albumArray: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+export const favouriteReducer = (
+  state = initialState.favourite,
+  action: AnyAction
+) => {
+  switch (action.type) {
+    case ADD_TO_FAVOURITE_SONG_SINGLE:
+      return {
+        ...state,
+
+        songSelected: action.payload,
+      };
+    default:
+      return state;
+  }
+};

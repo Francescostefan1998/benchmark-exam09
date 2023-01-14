@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter , Routes, Route, Link, LinkProps } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Dispatch } from "react";
@@ -8,7 +8,6 @@ import ArtistPage from "./components/ArtistPage";
 import AlbumPage from "./components/AlbumPage";
 import MySidebar from "./components/MySidebar";
 import Player from "./components/Player";
-import { store } from "./redux/store";
 import { MapDispatchToProps, useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
@@ -21,21 +20,10 @@ import { ThunkDispatch } from "redux-thunk";
 import { Action } from "redux";
 import { connect } from "react-redux";
 
-const mapAppStateToProps = (state: ReduxStore) => state
 
-const mapAppDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
-  fetchHomeS: (query: string) => dispatch(fetchHomeSong(query))
-});
+const App = () => {
 
-class App extends Component{
- 
-state = {
-  albumSelected: null,
-  thissong: null,
-song: []
-}
 
-render(){
   return (
     <div id="biggestMain">
       <BrowserRouter>
@@ -43,21 +31,24 @@ render(){
           <Routes>
           <Route   
             path="/" 
-            element={<HomePage album={this.state.albumSelected} listAlbum={this.state.song}/>}
+            
+            element={<HomePage/>}
           />
           <Route
-            path="/albumpage/:albumId" 
-            element={ <AlbumPage />}
+            path="/albumpage/:albumId"  
+            
+            element={<AlbumPage/>}
           />
           <Route
             path="/artistpage/:artistId" 
-            element={<ArtistPage />}
+            
+            element={<ArtistPage/>}
           /></Routes>
           <Player />
         </div>
       </BrowserRouter>
     </div>
   );
-}}
+}
 
-export default connect(mapAppStateToProps, mapAppDispatchToProps)(App);
+export default App;
