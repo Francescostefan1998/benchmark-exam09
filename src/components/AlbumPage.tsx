@@ -8,44 +8,34 @@ import * as React from "react"
 import { ThunkDispatch } from "redux-thunk";
 import { Action } from "@reduxjs/toolkit";
 import { fetchHomeSong } from "../redux/actions";
-import {useEffect} from "react"
-import { useDispatch } from "react-redux";
-type AlbumProps = {
-  album: Album | null
-  fetchAlbumS: (argument: string) => void
-  listsong: ReduxStore["content"]
-  album1: ReduxStore["selected"]
-  fetchHomeS: (argument: string) => void
-}
+import {Component} from "react"
+import { connect } from "react-redux";
+const mapAlbumPageStateToProps = (state: ReduxStore) => state
 
-const mapDispatchToProp = (dispatch: ThunkDispatch<Action, any, any>) => ({
-  fetchHomeS: (query: string) => dispatch(fetchHomeSong(query)),
-});
-const mapdispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
-  fetchHomeS: (query: string) => dispatch(fetchHomeSong(query)),
+const mapAlbumPageDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
+  fetchHomeS: (query: string) => dispatch(fetchHomeSong(query))
 });
 
 
 
-const AlbumPage = (props: AlbumProps) =>  {
+class AlbumPage extends Component { 
   /* const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(changecolor(e));
   }; */
-  const dispatch = useDispatch();
-  
+/* 
   useEffect(() => {
     props.fetchAlbumS("dd");
     console.log("useeffect triggered");
-  }, []);
+  }, []);*/
 
-
+render(){
   return (
     <div className="main">
-      <MySidebar {...mapDispatchToProp(dispatch)}/>
+      <MySidebar />
       
       <div className="innerMain">
-      <MyNavbar {...mapdispatchToProps(dispatch)} />
+      <MyNavbar />
         
         <div className="behind-nav">
           <div className="content">
@@ -53,11 +43,11 @@ const AlbumPage = (props: AlbumProps) =>  {
               <div id="cover-black"></div>
               <div className="row" id="album-title-image">
                 <div className="col-12 col-md-4 col-lg-3" id="album-image">
-                  {props.album && <img
+                 {/* {props.album && <img
                     src={props.album.album.cover}
                     alt="album-image"
                     id="header-img"
-                  />}
+                  />}*/}
                 </div>
                 <div
                   className="col-12 col-md-8 col-lg-8"
@@ -163,16 +153,17 @@ const AlbumPage = (props: AlbumProps) =>  {
             </div>
           </div>
         </div>
-        {props.album && (<div>
+        {/*  {props.album && (<div>
           <h2>Album</h2>
 
-          {props.listsong.map((song, i) => (
+         {props.listsong.map((song, i) => (
             <SingleSong song={song} key={i} i={i} />
           ))}
-        </div>)}
+        </div>)}*/}
       </div>
     </div>
   );
-}
+}}
 
-export default AlbumPage;
+
+export default connect(mapAlbumPageStateToProps, mapAlbumPageDispatchToProps)(AlbumPage);

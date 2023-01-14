@@ -8,38 +8,54 @@ import SingleAlbum from "./SingleAlbum";
 import { fetchHomeSong, fetchAlbumSong } from "../redux/actions";
 import { ReduxStore } from "../types/ReduxStore";
 import { ThunkDispatch } from "redux-thunk";
-import { Action } from "@reduxjs/toolkit";
+import { Action } from "redux"
 import { connect } from "react-redux";
 import { Component } from "react"
-
-
+import { Album } from "../types/Album";
 const mapHomeStateToProps = (state: ReduxStore) => state
 
 const mapHomeDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
-  fetchHomeS: (query: string) => dispatch(fetchHomeSong(query))
+  fetchHomeS: () => dispatch(fetchHomeSong("metallica"))
 });
+interface homePageProps {
+fetchHomeS: () => void,
+album: ReduxStore["selected"]
+listAlbum: ReduxStore["search"]
+}
+interface homePageState {
+  search: Album[]
+  selected: Album | null
+}
+class HomePage extends Component<homePageProps, homePageState> {
+  componentDidMount = () => {
+    this.props.fetchHomeS()
+console.log(this.props.album)
+console.log(this.state.selected)
+console.log(this.props.listAlbum)
+console.log(this.state.search)
 
-class HomePage extends Component {
-
-  state = {
-    listalbum: useSelector((store: ReduxStore) => store.search )
   }
+//changeAlbum = (selected: Album) =>  this.setState({selected: selected})
 
+  state: homePageState = {
+    search: [],
+    selected: null ,
+  }
  
 render() {
   return (
     <div className="main">
-      <MySidebar {...mapHomeDispatchToProps()}/>
+      <MySidebar />
       <div className="innerMain">
-        <MyNavbar {...mapHomeDispatchToProps()} />
+        <MyNavbar />
         <div>
-          {this.state.listalbum.length > 0 ? (
+          {this.state.search.length > 0 ? (
             <div className="row">
               <div className="col-12">
                 <h4>Albums</h4>
                 <div className="row" id="albums">
-                  {this.state.listalbum.map((album, i) => (
-                    <SingleAlbum album={album} key={i} i={i}  {...mapHomeDispatchToProps()}/>
+                  {this.state.search.map((album, i) => (
+                    <SingleAlbum  album={album} key={i}/>
                   ))}
                 </div>
               </div>
@@ -52,3 +68,4 @@ render() {
 }};
 
 export default connect(mapHomeStateToProps, mapHomeDispatchToProps)(HomePage);
+

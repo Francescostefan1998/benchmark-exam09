@@ -9,23 +9,24 @@ import * as React from "react"
 import { Action } from "@reduxjs/toolkit";
 import { ThunkDispatch } from "redux-thunk";
 import { useEffect } from "react";
+import {Component} from "react"
+import { connect } from "react-redux";
+import { ReduxStore } from "../types/ReduxStore";
+const mapNavbarStateToProps = (state: ReduxStore) => state
 
-export type myNavbarProps = {
-  fetchHomeS: (query: string) => void
-}
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
+const mapNavbarDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
   fetchHomeS: (query: string) => dispatch(fetchHomeSong(query))
 });
 
 
 
-const MyNavbar = (props: myNavbarProps) => {
-  const [query, setQuery] = useState("queen");
-  const [dropdown, setDropDown] = useState("dropdown-album");
-  const dispatch = useDispatch();
-  console.log(query);
-  const handleChange = (e: any) => {
+class MyNavbar extends Component{
+  //const [query, setQuery] = useState("queen");
+  //const [dropdown, setDropDown] = useState("dropdown-album");
+  //const dispatch = useDispatch();
+ // console.log(query);
+ /* const handleChange = (e: any) => {
     setQuery(e.target.value);
     props.fetchHomeS(query);
   };
@@ -34,13 +35,8 @@ const MyNavbar = (props: myNavbarProps) => {
     e.preventDefault();
     props.fetchHomeS(query);
 
-  };
-  useEffect(() => {
-    console.log("useeffect triggered");
-
-    props.fetchHomeS(query);
-  }, []);
-
+  };*/
+  render(){
   return (
     <div id="myNavbar">
       <div id="leftSideNavbar" className="navigation-buttons">
@@ -54,12 +50,12 @@ const MyNavbar = (props: myNavbarProps) => {
       <div className="search">
         <div className="input">
           <BsSearch className="text-dark" />
-          <Form onSubmit={handleSubmit}>
+          <Form /*onSubmit={handleSubmit}*/>
             <input
-              type="search"
+              type="search"/*
               value={query}
               onChange={handleChange}
-              placeholder="What do you want to listen to?"
+              placeholder="What do you want to listen to?"*/
             />
           </Form>
         </div>
@@ -72,11 +68,12 @@ const MyNavbar = (props: myNavbarProps) => {
           <div>John Doe</div>
           <div
             id="dropdown-album"
-            onClick={() =>
+            /*onClick={() =>
               dropdown !== "dropdown-album1"
                 ? setDropDown("dropdown-album1")
                 : setDropDown("dropdown-album")
-            }
+            } 
+          */
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +85,7 @@ const MyNavbar = (props: myNavbarProps) => {
             >
               <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
             </svg>
-            <div className={dropdown} id="c-d-r">
+            <div /*className=dropdown*/ id="c-d-r">
               <div className="row drop-list-song">
                 <div className="col-8">Account</div>
                 <div className="col-2">
@@ -235,6 +232,6 @@ const MyNavbar = (props: myNavbarProps) => {
       </div>
     </div>
   );
-};
+}};
 
-export default MyNavbar;
+export default connect(mapNavbarStateToProps, mapNavbarDispatchToProps )(MyNavbar); ;

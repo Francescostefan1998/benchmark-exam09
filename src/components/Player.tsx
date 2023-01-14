@@ -11,11 +11,21 @@ import { BsFillVolumeUpFill } from "react-icons/bs";
 import { addToFavouriteSongs } from "../redux/actions";
 import * as React from "react"
 import { ReduxStore } from "../types/ReduxStore";
+import { connect } from "react-redux";
+import { Component } from "react"
+import { fetchHomeSong } from "../redux/actions";
+import { ThunkDispatch } from "redux-thunk";
+import { Action } from "@reduxjs/toolkit";
 
-const Player = () => {
-  const dispatch = useDispatch();
-console.log("Player")
-  useEffect(() => {
+
+const mapPlayerStateToProps = (state: ReduxStore) => state
+
+const mapPlayerDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
+  fetchHomeS: (query: string) => dispatch(fetchHomeSong(query))
+});
+
+class Player extends Component {
+/*  useEffect(() => {
     dispatch(addToFavouriteSongs(jobSelected));
     console.log("useeffect triggered");
   }, []);
@@ -28,22 +38,23 @@ if(jobSelected !== null){
 }
   const start = () => {
     audio.play();
-  };
+  };*/
+  render(){
   return (
     <div>
-      {jobSelected !== null ? (
+      
         <div id="player">
           <div id="leftSidePlayer">
             <div id="titleSongPlayer">
               <div id="imagePlayer">
-                <img src={jobSelected.album.cover} alt="image" />
+               {/* <img src={jobSelected.album.cover} alt="image" />*/}
               </div>
               <div id="textPlayer">
                 <div>
-                  <h3>{jobSelected.title}</h3>
+                  <h3>{/*{jobSelected.title}*/}</h3>
                 </div>
                 <div>
-                  <h6>{jobSelected.artist.name}</h6>
+                  <h6>{/*{jobSelected.artist.name}*/}</h6>
                 </div>
               </div>
             </div>
@@ -60,7 +71,7 @@ if(jobSelected !== null){
                     <AiFillStepBackward />
                   </div>
                   <div>
-                    <button onClick={start}>Play</button>
+                    <button /*onClick={start}*/>Play</button>
                   </div>
                   <div>
                     <AiFillStepForward />
@@ -72,7 +83,7 @@ if(jobSelected !== null){
                     <div className="progress--bar">
                       <div className="progress--bar-bg">
                         <div className="bg">
-                          <div className="bar">{jobSelected.preview}</div>
+                          <div className="bar">{/*{jobSelected.preview}*/}</div>
                         </div>
                       </div>
                     </div>
@@ -94,11 +105,9 @@ if(jobSelected !== null){
             </div>
           </div>
         </div>
-      ) : (
-        <div></div>
-      )}
+      
     </div>
   );
-};
+}};
 
-export default Player;
+export default connect(mapPlayerStateToProps, mapPlayerDispatchToProps )(Player); ;

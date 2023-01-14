@@ -20,7 +20,7 @@ const persistConfig = {
 };
 const bigReducer = combineReducers({
   album: albumReducer,
-  color: changecolor,
+ 
   /*
   
     store:{
@@ -32,6 +32,7 @@ const bigReducer = combineReducers({
 });
 const persistedReducer = persistReducer(persistConfig, bigReducer);
 export const store = configureStore({
+  
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

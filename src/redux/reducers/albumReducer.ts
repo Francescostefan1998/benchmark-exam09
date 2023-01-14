@@ -15,7 +15,7 @@ const initialState: ReduxStore = {
   search: [],
   favourite: null,
 };
-console.log(initialState.selected);
+console.log(initialState);
 const albumReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case ADD_TO_FAVOURITE_JOB:

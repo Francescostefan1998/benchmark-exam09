@@ -31,12 +31,10 @@ class App extends Component{
  
 state = {
   albumSelected: null,
-  thissong: useSelector((store: ReduxStore) => store.selected),
+  thissong: null,
 song: []
 }
 
-  
- 
 render(){
   return (
     <div id="biggestMain">
@@ -45,11 +43,11 @@ render(){
           <Routes>
           <Route   
             path="/" 
-            element={<HomePage fetchAlbumS={fetchAlbumSong}/>}
+            element={<HomePage album={this.state.albumSelected} listAlbum={this.state.song}/>}
           />
           <Route
             path="/albumpage/:albumId" 
-            element={ <AlbumPage album={this.state.albumSelected} fetchHomeS={fetchHomeSong}  fetchAlbumS={fetchAlbumSong} listsong={this.state.song} album1={this.state.thissong}/>}
+            element={ <AlbumPage />}
           />
           <Route
             path="/artistpage/:artistId" 

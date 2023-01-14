@@ -8,16 +8,20 @@ import { fetchHomeSong } from "../redux/actions";
 import * as React from "react"
 import { ThunkDispatch } from "redux-thunk";
 import { Action } from "@reduxjs/toolkit";
-type mySidebarProps = {
-  fetchHomeS: (query: string) => void
-}
+import {Component} from "react"
+import { connect } from "react-redux";
+import { ReduxStore } from "../types/ReduxStore";
+const mapSidebarStateToProps = (state: ReduxStore) => state
 
-const mapDispatchToProp = (dispatch: ThunkDispatch<Action, any, any>) => ({
+const mapSidebarDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
   fetchHomeS: (query: string) => dispatch(fetchHomeSong(query))
 });
 
-const MySidebar = (props: mySidebarProps) => {
-  return (
+class MySidebar extends Component {
+
+
+render(){
+return (
     <div id="sideBar" className="col-12 col-md-3">
       <div id="right-logo">
         <BsSpotify id="logo-f" />
@@ -29,7 +33,7 @@ const MySidebar = (props: mySidebarProps) => {
           </div>
           <Link
             to="/"
-            onClick={() => props.fetchHomeS("queen")}
+            onClick={() => {/*fetchHomeS("queen")*/}}
             className="col-10"
           >
             Home
@@ -49,7 +53,7 @@ const MySidebar = (props: mySidebarProps) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}}
 
-export default MySidebar;
+export default connect(mapSidebarStateToProps, mapSidebarDispatchToProps )(MySidebar); ;

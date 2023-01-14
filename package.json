@@ -12,6 +12,7 @@
     "@types/node": "^18.11.18",
     "@types/react-bootstrap": "^0.32.32",
     "@types/react-router-dom": "^5.3.3",
+    "@types/redux-persist": "^4.3.1",
     "bootstrap": "^4.6.0",
     "cra-template-typescript": "^1.2.0",
     "font": "^0.0.4",
