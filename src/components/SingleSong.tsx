@@ -8,24 +8,36 @@ import { ReduxStore } from "../types/ReduxStore";
 import { fetchAlbumSong } from "../redux/actions";
 import { ThunkDispatch } from "redux-thunk";
 import { Action } from "@reduxjs/toolkit";
-const mapSingleSongStateToProps = (state: ReduxStore) => state
+const mapSingleSongStateToProps = (state: ReduxStore) => {
+  return {
+    songSelected: state.favourite,
+   }}
+
 
 const mapSingleSongDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
-  fetchAlbumS: (query: string) => dispatch(fetchAlbumSong(query))
+  fetchAlbumS: (query: Song) => dispatch(addToFavouriteSongs(query))
   
 });
 
 interface singleSongProps {
+  fetchAlbumS: (song: Song) => void
   song: Song,
-  i: number
+  i: number,
+  songSelected: ReduxStore["favourite"]
 }
 
 
 class SingleSong extends Component<singleSongProps> {
+  componentDidUpdate(prevProps: any) {
+    if (this.props.songSelected.songSelected !== prevProps.songSelected.songSelected) {
+      this.setState({songSelected: this.props.song
+      });
+    }
+  }
 render(){
   return (
     <div
-      /*onClick={() => dispatch(addToFavouriteSongs(song))}*/
+      onClick={() => this.props.fetchAlbumS(this.props.song)}
       className="list-album"
     >
       <div className="list-left-side">

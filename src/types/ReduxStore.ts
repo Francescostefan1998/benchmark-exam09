@@ -10,5 +10,5 @@ export interface ReduxStore {
     albumSelected: Album | null;
   };
   search: { albumArray: Album[] };
-  favourite: { songSelected: Album | null };
+  favourite: { songSelected: Song | null };
 }

@@ -18,13 +18,25 @@ import { ThunkDispatch } from "redux-thunk";
 import { Action } from "@reduxjs/toolkit";
 
 
-const mapPlayerStateToProps = (state: ReduxStore) => state
+const mapPlayerStateToProps = (state: ReduxStore) => {
+  return {
+    song: state.favourite
+ }}
 
 const mapPlayerDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
   fetchHomeS: (query: string) => dispatch(fetchHomeSong(query))
 });
 
-class Player extends Component {
+interface playerProps{
+  song: ReduxStore["favourite"]
+}
+let audio = new Audio
+
+const start = () => {
+  
+      audio.play();
+    };
+class Player extends Component<playerProps> {
 /*  useEffect(() => {
     dispatch(addToFavouriteSongs(jobSelected));
     console.log("useeffect triggered");
@@ -32,13 +44,18 @@ class Player extends Component {
   const jobSelected = useSelector((store: ReduxStore) => store.favourite);
   console.log(jobSelected);
 
-  let audio = new Audio
+  
 if(jobSelected !== null){
-  audio = new Audio(jobSelected.preview);
-}
-  const start = () => {
-    audio.play();
-  };*/
+}*/
+ 
+  componentDidUpdate(prevProps: any) {
+    if (this.props.song.songSelected !== prevProps.song.songSelected) {
+      this.setState({songSelected: this.props.song.songSelected
+}); if (this.props.song.songSelected !== null)
+audio = new Audio(this.props.song.songSelected.preview);
+
+    }
+  }
   render(){
   return (
     <div>
@@ -47,14 +64,14 @@ if(jobSelected !== null){
           <div id="leftSidePlayer">
             <div id="titleSongPlayer">
               <div id="imagePlayer">
-               {/* <img src={jobSelected.album.cover} alt="image" />*/}
+               <img src={this.props.song.songSelected?.album.cover} alt="image" />
               </div>
               <div id="textPlayer">
                 <div>
-                  <h3>{/*{jobSelected.title}*/}</h3>
+                  <h6>{this.props.song.songSelected?.title}</h6>
                 </div>
                 <div>
-                  <h6>{/*{jobSelected.artist.name}*/}</h6>
+                  <h6>{this.props.song.songSelected?.artist.name}</h6>
                 </div>
               </div>
             </div>
@@ -71,7 +88,7 @@ if(jobSelected !== null){
                     <AiFillStepBackward />
                   </div>
                   <div>
-                    <button /*onClick={start}*/>Play</button>
+                    <button onClick={start}>Play</button>
                   </div>
                   <div>
                     <AiFillStepForward />
@@ -83,7 +100,7 @@ if(jobSelected !== null){
                     <div className="progress--bar">
                       <div className="progress--bar-bg">
                         <div className="bg">
-                          <div className="bar">{/*{jobSelected.preview}*/}</div>
+                          <div className="bar">{this.props.song.songSelected?.preview}</div>
                         </div>
                       </div>
                     </div>

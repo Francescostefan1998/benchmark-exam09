@@ -50,6 +50,8 @@ export const changecolor = (jobSelected: Album | null) => {
   };
 };
 export const addToFavouriteSongs = (song: Song | null) => {
+  console.log("ADD_TO_FAVOURITE_SONG_ triggered");
+
   return {
     type: ADD_TO_FAVOURITE_SONG_SINGLE,
     payload: song,

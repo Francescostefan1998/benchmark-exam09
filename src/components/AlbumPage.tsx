@@ -42,6 +42,12 @@ class AlbumPage extends Component<albumPageProps, albumPageState>{
     selected: this.props.album.albumSelected,
     songs: this.props.listSongs.song
   }
+  componentDidUpdate(prevProps: any) {
+    if (this.props.album !== prevProps.album) {
+      this.setState({selected: this.props.album.albumSelected,songs: this.props.listSongs.song
+      });
+    }
+  }
 render(){
   return (
     <div className="main">
