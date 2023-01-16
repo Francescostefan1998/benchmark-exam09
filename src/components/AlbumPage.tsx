@@ -10,15 +10,25 @@ import { Action } from "@reduxjs/toolkit";
 import { fetchHomeSong } from "../redux/actions";
 import {Component} from "react"
 import { connect } from "react-redux";
-const mapAlbumPageStateToProps = (state: ReduxStore) => state
+import { Song } from "../types/Song";
+const mapAlbumPageStateToProps = (state: ReduxStore) => {
+  return {
+    album: state.selected,
+    listSongs: state.content}}
 
 const mapAlbumPageDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
-  fetchHomeS: (query: string) => dispatch(fetchHomeSong(query))
 });
+interface albumPageProps {
+  album: ReduxStore["selected"]
+  listSongs: ReduxStore["content"]
+  }
+  interface albumPageState {
+    songs: Song[] | [],
+    selected: Album | null
+  }
 
 
-
-class AlbumPage extends Component { 
+class AlbumPage extends Component<albumPageProps, albumPageState>{ 
   /* const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(changecolor(e));
@@ -28,7 +38,10 @@ class AlbumPage extends Component {
     props.fetchAlbumS("dd");
     console.log("useeffect triggered");
   }, []);*/
-
+  state: albumPageState = {
+    selected: this.props.album.albumSelected,
+    songs: this.props.listSongs.song
+  }
 render(){
   return (
     <div className="main">
@@ -43,11 +56,11 @@ render(){
               <div id="cover-black"></div>
               <div className="row" id="album-title-image">
                 <div className="col-12 col-md-4 col-lg-3" id="album-image">
-                 {/* {props.album && <img
-                    src={props.album.album.cover}
+                  {this.state.selected && <img
+                    src={this.state.selected.cover}
                     alt="album-image"
                     id="header-img"
-                  />}*/}
+                  />}
                 </div>
                 <div
                   className="col-12 col-md-8 col-lg-8"
@@ -153,13 +166,13 @@ render(){
             </div>
           </div>
         </div>
-        {/*  {props.album && (<div>
+        {this.state.selected && (<div>
           <h2>Album</h2>
 
-         {props.listsong.map((song, i) => (
+         {this.state.songs.map((song, i) => (
             <SingleSong song={song} key={i} i={i} />
           ))}
-        </div>)}*/}
+        </div>)}
       </div>
     </div>
   );

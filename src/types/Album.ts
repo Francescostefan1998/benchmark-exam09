@@ -1,5 +1,7 @@
 import { AlbumSmall } from "./AlbumSmall";
 import { ArtistSmall } from "./ArtistSmall";
+import { data } from "./Data";
+import { Song } from "./Song";
 
 export interface Album {
   album: AlbumSmall;
@@ -18,4 +20,6 @@ export interface Album {
   title_short: string;
   title_version: string;
   type: string;
+  cover: string;
+  tracks: data;
 }

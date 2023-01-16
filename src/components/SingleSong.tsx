@@ -15,8 +15,13 @@ const mapSingleSongDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>)
   
 });
 
+interface singleSongProps {
+  song: Song,
+  i: number
+}
 
-class SingleSong extends Component {
+
+class SingleSong extends Component<singleSongProps> {
 render(){
   return (
     <div
@@ -26,16 +31,16 @@ render(){
       <div className="list-left-side">
         <div></div>
         <div className="flex-column">
-          <div className="gettitle">{/*{song.title}*/}</div>
+          <div className="gettitle">{this.props.song.title}</div>
           <div>
-            {
-        /*{song.artist.name}
-            <span className="id">{song.id}</span>*/}
+            
+        {this.props.song.artist.name}
+            <span className="id">{this.props.song.id}</span>
           </div>
         </div>
       </div>
       <div className="time-song">
-        {/*{song.duration}
+        {this.props.song.duration}{/*
         {(song.duration - (song.duration %= 60)) / 60 +
           (9 < song.duration ? ":" : ":0") +
           song.duration}*/}

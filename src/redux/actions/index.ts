@@ -22,6 +22,10 @@ export const fetchAlbumSong = (query: string) => {
         let data = fetchedalbum.tracks.data;
         console.log(data);
         dispatch({
+          type: ADD_TO_FAVOURITE_SONG,
+          payload: fetchedalbum,
+        });
+        dispatch({
           type: ADD_TO_FAVOURITE_JOB,
           payload: data,
         });
