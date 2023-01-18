@@ -5,7 +5,8 @@ import App from "./App";
 import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import configureStore from "./redux/store";
-const store = configureStore();
+import store from "./redux/store";
+//const store = configureStore();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
