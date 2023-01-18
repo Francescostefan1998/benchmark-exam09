@@ -3,6 +3,7 @@ import {
   ADD_TO_FAVOURITE_SONG,
   SEARCH_SONG,
   ADD_TO_FAVOURITE_SONG_SINGLE,
+  ADD_TO_FAVOURITE_SONG_LIST,
 } from "../actions";
 import { Album } from "../../types/Album";
 import { ArrayOfAlbum } from "../../types/ArrayOfAlbum";
@@ -67,6 +68,24 @@ export const favouriteReducer = (
         ...state,
 
         songSelected: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const songfavouriteReducer = (
+  state = initialState.songFavourite,
+  action: AnyAction
+) => {
+  switch (action.type) {
+    case ADD_TO_FAVOURITE_SONG_LIST:
+      console.log(state.list);
+
+      return {
+        ...state,
+
+        list: [...state.list, action.payload],
       };
     default:
       return state;

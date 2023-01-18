@@ -92,6 +92,7 @@ import {
   favouriteReducer,
   selectedReducer,
   searchReducer,
+  songfavouriteReducer,
 } from "../reducers/albumReducer";
 import thunk from "redux-thunk";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
@@ -105,6 +106,9 @@ export const initialState: ReduxStore = {
   content: {
     song: [],
   },
+  songFavourite: {
+    list: [],
+  },
   selected: {
     albumSelected: null,
   },
@@ -115,11 +119,12 @@ export const initialState: ReduxStore = {
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["favourite"], // or blacklist: ['search']
+  whitelist: ["favourite", "selected", "songFavourite", "content", "search"], // or blacklist: ['search']
 };
 
 const bigReducer = combineReducers({
   content: contentReducer,
+  songfavourite: songfavouriteReducer,
   selected: selectedReducer,
   search: searchReducer,
   favourite: favouriteReducer,

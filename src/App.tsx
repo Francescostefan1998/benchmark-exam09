@@ -19,6 +19,7 @@ import { Song } from "./types/Song";
 import { ThunkDispatch } from "redux-thunk";
 import { Action } from "redux";
 import { connect } from "react-redux";
+import FavouriteSong from "./components/FavouriteSong";
 
 
 const App = () => {
@@ -43,7 +44,13 @@ const App = () => {
             path="/artistpage/:artistId" 
             
             element={<ArtistPage/>}
-          /></Routes>
+          />
+          <Route
+            path="/myfavourite" 
+            
+            element={<FavouriteSong/>}
+          />
+          </Routes>
           <Player />
         </div>
       </BrowserRouter>

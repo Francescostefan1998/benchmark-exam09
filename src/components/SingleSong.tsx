@@ -1,5 +1,5 @@
 import { useDispatch} from "react-redux";
-import { addToFavouriteSongs } from "../redux/actions";
+import { addToFavouriteSongs, addToFavouriteSongsList } from "../redux/actions";
 import * as React from "react"
 import { Song } from "../types/Song";
 import {Component} from "react"
@@ -8,40 +8,59 @@ import { ReduxStore } from "../types/ReduxStore";
 import { fetchAlbumSong } from "../redux/actions";
 import { ThunkDispatch } from "redux-thunk";
 import { Action } from "@reduxjs/toolkit";
+import { BsSuitHeartFill } from "react-icons/bs"
+import { BsSuitHeart } from "react-icons/bs"
 const mapSingleSongStateToProps = (state: ReduxStore) => {
   return {
     songSelected: state.favourite,
+    songLiked: state.songFavourite
    }}
 
 
 const mapSingleSongDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
-  fetchAlbumS: (query: Song) => dispatch(addToFavouriteSongs(query))
+  fetchAlbumS: (query: Song) => dispatch(addToFavouriteSongs(query)),
+  addToListS: (query: Song) => dispatch(addToFavouriteSongsList(query))
   
 });
 
 interface singleSongProps {
-  fetchAlbumS: (song: Song) => void
+  fetchAlbumS: (song: Song) => void,
+  addToListS: (song: Song) => void,
   song: Song,
   i: number,
-  songSelected: ReduxStore["favourite"]
+  songSelected: ReduxStore["favourite"],
+  songLiked: ReduxStore["songFavourite"]
 }
 
+interface singleSongState {
+  songSelected: Song | null,
+songLikedState: Song | null,
+liked: boolean
+}
 
-class SingleSong extends Component<singleSongProps> {
+class SingleSong extends Component<singleSongProps, singleSongState> {
+
+state: singleSongState = {
+  songLikedState: null,
+  songSelected: null,
+  liked: false
+}
+
   componentDidUpdate(prevProps: any) {
-    if (this.props.songSelected.songSelected !== prevProps.songSelected.songSelected) {
+    if (this.props.songSelected.songSelected !== prevProps.songSelected.songSelected ) {
       this.setState({songSelected: this.props.song
       });
     }
   }
 render(){
-  return (
+  return (<div className="flex-row">
+    <div onClick={(e) => {this.props.addToListS(this.props.song); {this.state.liked === false ? this.setState({liked: true}) : this.setState({liked: false})}}}>{this.state.liked === true ? <BsSuitHeartFill/> : <BsSuitHeart/>}</div>
+
     <div
       onClick={() => this.props.fetchAlbumS(this.props.song)}
-      className="list-album"
+      className="list-album col-12"
     >
       <div className="list-left-side">
-        <div></div>
         <div className="flex-column">
           <div className="gettitle">{this.props.song.title}</div>
           <div>
@@ -57,7 +76,7 @@ render(){
           (9 < song.duration ? ":" : ":0") +
           song.duration}*/}
       </div>
-    </div>
+    </div></div>
   );
 }};
 

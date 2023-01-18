@@ -6,6 +6,9 @@ export interface ReduxStore {
   content: {
     song: Song[];
   };
+  songFavourite: {
+    list: Song[];
+  };
   selected: {
     albumSelected: Album | null;
   };
